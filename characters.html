@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NOVAZONE ARCHIVE</title>
+
+<style>
+/* ===================== BASE ===================== */
+body{
+    margin:0;
+    font-family:Arial;
+    color:white;
+    background:url("background.jpeg") center/cover no-repeat fixed;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+    z-index:-1;
+}
+
+/* ===================== HEADER ===================== */
+.header{
+    text-align:center;
+    margin-top:30px;
+}
+
+.title{
+    font-size:28px;
+    color:#00ffcc;
+    font-weight:bold;
+}
+
+.ai-box{
+    margin:10px auto;
+    max-width:700px;
+    padding:10px;
+    border:1px solid rgba(0,255,255,0.5);
+    border-radius:10px;
+    font-size:13px;
+    color:#bff;
+    text-align:center;
+    background:rgba(0,0,0,0.3);
+}
+
+/* ===================== FILTER ===================== */
+.filters{
+    text-align:center;
+    margin:20px;
+}
+
+.filters button{
+    margin:5px;
+    padding:6px 12px;
+    border:1px solid #00ffcc;
+    background:black;
+    color:#00ffcc;
+    cursor:pointer;
+}
+
+.filters button:hover{
+    background:#00ffcc;
+    color:black;
+}
+
+/* ===================== GRID ===================== */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:12px;
+    padding:15px;
+}
+
+@media (max-width:768px){
+    .grid{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media (max-width:480px){
+    .grid{
+        grid-template-columns:repeat(1, 1fr);
+    }
+}
+
+/* ===================== CARD ===================== */
+.card{
+    position:relative;
+    width:100%;
+    height:230px;
+    border-radius:12px;
+    overflow:hidden;
+    background:rgba(0,0,0,0.6);
+    border:1px solid #00ffcc;
+    cursor:pointer;
+    transition:0.3s;
+    aspect-ratio: 1/1.2;
+}
+
+/* hover effect */
+.card:hover{
+    transform:scale(1.05);
+    z-index:10;
+}
+
+/* ===================== IMAGE ===================== */
+.img-box{
+    width:100%;
+    height:140px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:rgba(0,0,0,0.25);
+    border-radius:8px;
+}
+
+/* KEY FIX HERE */
+.img-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+/* ===================== TEXT ===================== */
+.card h3{
+    margin:8px 0 0;
+    font-size:14px;
+    color:#00ffcc;
+    text-align:center;
+}
+
+/* ===================== FLIP SYSTEM ===================== */
+.front, .back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    backface-visibility:hidden;
+    transition:0.6s;
+    border-radius:12px;
+    background:rgba(0,0,0,0.6);
+}
+
+/* FRONT */
+.front{
+    transform:rotateY(0deg);
+}
+
+/* BACK */
+.back{
+    transform:rotateY(180deg);
+    padding:10px;
+    color:#00ffcc;
+    font-size:13px;
+}
+
+/* FLIP ACTIVE */
+.card.flipped .front{
+    transform:rotateY(180deg);
+}
+
+.card.flipped .back{
+    transform:rotateY(0deg);
+}
+
+/* ===================== IMAGE HOLD ZOOM ===================== */
+.inspect-view{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.inspect-view img{
+    max-width:90%;
+    max-height:90%;
+    object-fit:contain;
+    border:2px solid #00ffcc;
+    border-radius:10px;
+    box-shadow:0 0 20px #00ffcc;
+}
+
+/* ===================== BUTTON ===================== */
+#backBtn{
+    position:absolute;
+    top:20px;
+    left:20px;
+    padding:10px 16px;
+    background:cyan;
+    color:black;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:20;
+}
+
+</style>
+</head>
+
+<body>
+
+    <button id="backBtn">
+← RETURN TO UNIVERSE
+</button>
+
+<div id="inspectView" class="inspect-view" onclick="closeInspect()">
+    <img id="inspectImg">
+</div>
+
+
+
+    <div id="modal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeModal()" class="close">×</span>
+
+        <h2 id="m_name"></h2>
+        <p id="m_role"></p>
+        <p id="m_power"></p>
+        <p id="m_zone"></p>
+    </div>
+</div>
+
+
+<div class="header">
+    <div class="title">🌌 NOVAZONE ARCHIVE</div>
+
+    <div class="ai-box">
+        ⚠ Images shown are AI-generated visuals created to represent the characters, ships, and environments.
+    </div>
+</div>
+
+<!-- FILTER BUTTONS -->
+<div class="filters">
+    <button onclick="filterAll()">ALL</button>
+    <button onclick="filterType('characters')">CHARACTERS</button>
+    <button onclick="filterType('other')">OTHER</button>
+</div>
+
+<!-- GRID -->
+<div class="grid" id="grid"></div>
+
+<script>
+
+
+document
+.getElementById("backBtn")
+.addEventListener("click",()=>{
+
+    window.location.href =
+    "index.html";
+
+});
+
+
+
+const novazone = [
+{
+img:"gegozorous.jpeg",
+name:"Gegozorous",
+role:"Ancient Monster Guardian",
+power:"Electric + Regeneration(while in rage),electricity absorption",
+zone:"Monster Zone",
+type:"characters"
+},
+{
+img:"spaceship.jpeg",
+name:"Zetorex's Warship",
+role:"army Carrier Ship",
+power:"Laser Cannons + FTL Travel,invisible mode,defender shield,high tech weapons,automatic repair system",
+zone:"Space",
+type:"other"
+},
+{
+img:"zetorex.jpeg",
+name:"Zetorex",
+role:"Cosmic Commander(God of destruction)",
+power:"Dark Energy,size shifiting(~10 ft to exceed enemy size),hyponosis,stronger hits when enemy is bigger",
+zone:"Warship",
+type:"characters"
+},
+{
+img:"nirious.jpeg",
+name:"Nirous",
+role:"Nature Guardian",
+power:"Cosmic Energy",
+zone:"Stellar Rift",
+type:"characters"
+},
+{
+    img:"juncy.jpeg",
+    name:"Juncy",
+    role:"supporter",
+    power:"adaptive intelligence",
+    zone:"kirax planet",
+    type:"characters"
+},
+{
+    img:"kiron.jpeg",
+    name:"Kiron",
+    role:"Tactical leader",
+    power:"Strategic Genius",
+    zone:"kirax planet",
+    type:"characters"
+},
+{
+    img:"maton.jpeg",
+    name:"Maton",
+    role:"frontline fighter",
+    power:"Enhanced Strength and Durability",
+    zone:"kirax planet",
+    type:"characters"
+},
+{
+    img:"sherby.jpeg",
+    name:"Sherby",
+    role:"systembreaker",
+    power:"cybermind",
+    zone:"kirax planet",
+    type:"characters"
+},
+{
+    img:"kiraxrobotic army.jpeg",
+    name:"Kirax Robotic Army",
+    role:"defenders and tech supporters",
+    power:"advanced technology and weaponry",
+    zone:"kirax planet",
+    type:"other"
+},
+{
+    img:"wizas.jpeg",
+    name:"Wizas",
+    role:"frontline fighter",
+    power:"combat reflex",
+    zone:"kirax planet",
+    type:"characters"
+},
+{
+    img:"megoz.jpeg",
+    name:"Megoz",
+    role:"Tech chief",
+    power:"system authority",
+    zone:"kirax planet",
+    type:"characters"
+},
+{
+    img:"zetorexarmy.jpeg",
+    name:"Zetorex's Army",
+    role:"invasion force",
+    power:"varied combat skills and advanced weaponry",
+    zone:"warship",
+    type:"other"
+},
+{
+    img:"zyntrex.jpeg",
+    name:"Zyntrex",
+    role:"commander of zetorex's army",
+    power:"hyponosis,teleportation,army control",
+    zone:"warship",
+    type:"characters"
+},
+{
+    img:"icelion.jpeg",
+    name:"Icelion",
+    role:"ancient guardian",
+    power:"super strength,ice manipulation",
+    zone:"Vedtoria planet",
+    type:"characters"
+},
+{
+    img:"lucas.jpeg",
+    name:"Lucas",
+    role:"protector of vedtoria",
+    power:"magic ablities",
+    zone:"Vedtoria planet",
+    type:"characters"
+},
+{
+    img:"vedos.jpeg",
+    name:"Vedos",
+    role:"protector of vedtoria",
+    power:"magic ablities",
+    zone:"Vedtoria planet",
+    type:"characters"
+},
+{
+    img:"mazzo.jpeg",
+    name:"Mazzo",
+    role:"Nirous's friend",
+    power:"magic ablities",
+    zone:"Vedtoria planet",
+    type:"characters"
+},
+{
+    img:"modex.jpeg",
+    name:"Modex",
+    role:"Zyntrex's brother,second commander of zetorex's army",
+    power:"hyponosis,army control",
+    zone:"warship",
+    type:"characters"
+},
+{
+    img:"liza.jpeg",
+    name:"Liza",
+    role:"Nirous's friend",
+    power:"driving and vehicle repair skills",
+    zone:"Earth",
+    type:"characters"
+},
+{
+    img:"greenstone.jpeg",
+    name:"Greenstone",
+    role:"protector of vedtoria's nature",
+    power:"nature,nature regeneration",
+    zone:"Vedtoria planet",
+    type:"other"
+},
+{
+    img:"vedtriaarmy.jpeg",
+    name:"Vedtria Army",
+    role:"defenders of vedtoria",
+    power:"varied combat skills and magic abilities",
+    zone:"Vedtoria planet",
+    type:"other"
+}
+];
+
+let currentData = novazone;
+
+/* 🔥 SINGLE RENDER ONLY */
+function render(data){
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
+
+    data.forEach((item, index) => {
+        grid.innerHTML += `
+        <div class="card" onclick="flipCard(this)">
+            <div class="front">
+                <div class="img-box">
+                    <img src="${item.img}">
+                </div>
+                <h3>${item.name}</h3>
+            </div>
+
+            <div class="back">
+                <p>${item.role ? "Role: " + item.role : ""}</p>
+                <p>${item.power ? "Power: " + item.power : ""}</p>
+                <p>Zone: ${item.zone}</p>
+            </div>
+
+        </div>
+        `;
+    });
+}
+
+
+
+/* 🔥 FILTERS */
+function filterType(type){
+    render(novazone.filter(i => i.type === type));
+}
+
+function filterAll(){
+    render(novazone);
+}
+
+/* 🔥 START */
+render(novazone);
+
+function flipCard(el){
+    el.classList.toggle("flipped");
+}
+
+let holdTimer;
+
+document.addEventListener("mousedown", (e)=>{
+    if(e.target.tagName === "IMG"){
+        holdTimer = setTimeout(()=>{
+            openInspect(e.target.src);
+        }, 400); // hold 0.4 sec
+    }
+});
+
+document.addEventListener("mouseup", ()=>{
+    clearTimeout(holdTimer);
+});
+
+document.addEventListener("touchstart", (e)=>{
+   if(e.target.closest(".img-box")){
+    const img = e.target.closest(".img-box").querySelector("img");
+
+    holdTimer = setTimeout(()=>{
+        openInspect(img.src);
+    }, 400); 
+}
+}
+);
+
+document.addEventListener("touchend", ()=>{
+    clearTimeout(holdTimer);
+});
+
+function openInspect(src){
+    document.getElementById("inspectImg").src = src;
+    document.getElementById("inspectView").style.display = "flex";
+}
+
+function closeInspect(){
+    document.getElementById("inspectView").style.display = "none";
+}
+
+
+</script>
+
+</body>
+</html>
