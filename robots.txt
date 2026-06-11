@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iamguganesh.github.io/ZENON-website/sitemap.xml
