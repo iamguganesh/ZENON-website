@@ -25,13 +25,13 @@
     <meta property="og:title" content="ZENON FICTIONAL UNIVERSE">
     <meta property="og:description" content="Enter Kirax 17 — a sci-fi universe of cosmic wars, monsters, and futuristic civilizations created by K.G.ZENON.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="galaxy.jpeg">
+    <meta property="og:image" content="galaxy-16x9.jpeg">
 
     <!-- Twitter Preview -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ZENON FICTIONAL UNIVERSE">
     <meta name="twitter:description" content="Sci-fi story universe: Kirax 17, Zetorex, Gegozorous and cosmic war saga.">
-    <meta name="twitter:image" content="galaxy.jpeg">
+    <meta name="twitter:image" content="galaxy-16x9.jpeg">
 
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -65,7 +65,7 @@ body::before{
     background:
 
     /*  GALAXY IMAGE */
-    url("galaxy.jpeg"),
+    url("galaxy-16x9.webp"),
 
     /* SMALL STARS */
     radial-gradient(white 1px, transparent 1px),
@@ -123,7 +123,7 @@ drop-shadow(0 0 25px rgba(0,255,255,0.25));
     z-index:-3;
 
     animation:
-    universeMove 75s linear infinite,
+    universeMove 60s linear infinite,
     twinkle 6s ease-in-out infinite alternate;
 }
 /* DARK OVERLAY DEPTH */
@@ -596,6 +596,18 @@ body::after {
 }
 }
 
+@media (max-width: 768px) {
+    body::before {
+        background:
+        url("galaxy-9x16.webp"),
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.7) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(255,255,255,0.9) 2px, transparent 2px),
+        radial-gradient(circle at 20% 20%, rgba(0,255,255,0.10), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(140,0,255,0.08), transparent 40%);
+    }
+}
+
     </style>
 
 </head>
@@ -694,6 +706,7 @@ if(window.innerWidth < 768){
     stars.length = 20;
 
 }
+
 
 </script>
 
@@ -857,7 +870,7 @@ CHARACTER SECTION
 
             <div class="card">
 
-                <img src="kirax_book.jpeg">
+                <img src="kirax_book.webp">
 
                 <div class="card-content">
 
@@ -883,7 +896,7 @@ CHARACTER SECTION
 
             <div class="card">
 
-                <img src="strangers_book.jpeg">
+                <img src="strangers_book.webp">
 
                 <div class="card-content">
 
@@ -910,7 +923,7 @@ CHARACTER SECTION
 
             <div class="card">
 
-                <img src="lifechanger_book.jpeg">
+                <img src="lifechanger_book.webp">
 
                 <div class="card-content">
 
@@ -937,7 +950,7 @@ CHARACTER SECTION
 
             <div class="card">
 
-                <img src="vedtoria_book.jpeg">
+                <img src="vedtoria_book.webp">
 
                 <div class="card-content">
 
@@ -962,7 +975,7 @@ CHARACTER SECTION
 
             <div class="card">
 
-                <img src="Razor_cover.jpeg">
+                <img src="Razor_cover.webp">
 
                 <div class="card-content">
 
