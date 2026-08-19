@@ -123,6 +123,48 @@ body::before{
     object-fit:cover;
     object-position:center;
 }
+
+.image-prev,
+.image-next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:30px;
+    height:40px;
+    border:none;
+    background:rgba(0,0,0,0.65);
+    color:#00ffcc;
+    font-size:28px;
+    cursor:pointer;
+    z-index:5;
+}
+
+.image-prev{
+    left:5px;
+}
+
+.image-next{
+    right:5px;
+}
+
+.image-prev:hover,
+.image-next:hover{
+    background:#00ffcc;
+    color:black;
+}
+
+.image-counter{
+    position:absolute;
+    bottom:5px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,0.7);
+    color:#00ffcc;
+    padding:3px 8px;
+    border-radius:10px;
+    font-size:11px;
+    z-index:5;
+}
 /* ===================== TEXT ===================== */
 .card h3{
     margin:8px 0 0;
@@ -184,6 +226,54 @@ body::before{
     box-shadow:0 0 20px #00ffcc;
 }
 
+.inspect-prev,
+.inspect-next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:50px;
+    height:60px;
+    border:none;
+    background:rgba(0,0,0,0.65);
+    color:#00ffcc;
+    font-size:40px;
+    cursor:pointer;
+    z-index:10000;
+}
+
+.inspect-prev{
+    left:20px;
+}
+
+.inspect-next{
+    right:20px;
+}
+
+.inspect-prev:hover,
+.inspect-next:hover{
+    background:#00ffcc;
+    color:black;
+}
+
+.inspect-close{
+    position:absolute;
+    top:20px;
+    right:25px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,0.7);
+    color:#00ffcc;
+    font-size:30px;
+    cursor:pointer;
+    z-index:10001;
+}
+
+.inspect-close:hover{
+    background:#00ffcc;
+    color:black;
+}
 /* ===================== BUTTON ===================== */
 #backBtn{
     position:absolute;
@@ -209,9 +299,20 @@ body::before{
 </button>
 
 <div id="inspectView" class="inspect-view" onclick="closeInspect()">
-    <img id="inspectImg">
-</div>
 
+    <button class="inspect-close"
+        onclick="event.stopPropagation(); closeInspect()">×</button>
+
+    <button class="inspect-prev"
+        onclick="event.stopPropagation(); changeInspectImage(-1)">‹</button>
+
+    <img id="inspectImg"
+        onclick="event.stopPropagation();">
+
+    <button class="inspect-next"
+        onclick="event.stopPropagation(); changeInspectImage(1)">›</button>
+
+</div> 
 
 
     <div id="modal" class="modal">
@@ -426,6 +527,47 @@ type:"characters"
     power:"varied combat skills and magic abilities",
     zone:"Vedtoria planet",
     type:"other"
+},
+
+{
+    images:[
+        "zone1.webp",
+        "zone3.webp",
+        "zone2.webp",
+        "zone4.webp",
+        "zone5.webp"
+    ],
+    name:"Monster Zone",
+    role:"Ancient Monster Region",
+    power:"Home of ancient monsters",
+    zone:"Kirax Planet",
+    type:"other"
+},
+
+{
+    images:[
+        "guard1.webp",
+        "guard2.webp"
+    ],
+    name:"Blue guard-1",
+    role:"defensive unit",
+    power:"attack and defense",
+    zone:"Kirax Planet",
+    type:"other"
+},
+
+{
+    images:[
+        "city1.webp",
+        "city2.webp",
+        "city3.webp",
+        "city4.webp",
+    ],
+    name:"Kirax Cities",
+    role:"Kiraxians region",
+    power:"home of kiraxians",
+    zone:"Kirax Planet",
+    type:"other"
 }
 ];
 
@@ -437,23 +579,62 @@ function render(data){
     grid.innerHTML = "";
 
     data.forEach((item, index) => {
+
+        const images = item.images || [item.img];
+
         grid.innerHTML += `
-        <div class="card" onclick="flipCard(this)">
+        <div class="card">
+
             <div class="front">
+
                 <div class="img-box">
-                    <img src="${item.img}">
+
+                    <img
+                        id="img-${index}"
+                        src="${images[0]}"
+                    >
+
+                    ${
+                        images.length > 1
+                        ? `
+                        <button
+                            class="image-prev"
+                            onclick="event.stopPropagation(); changeImage(${index}, -1)"
+                        >‹</button>
+
+                        <button
+                            class="image-next"
+                            onclick="event.stopPropagation(); changeImage(${index}, 1)"
+                        >›</button>
+
+                        <div class="image-counter" id="counter-${index}">
+                            1 / ${images.length}
+                        </div>
+                        `
+                        : ""
+                    }
+
                 </div>
+
                 <h3>${item.name}</h3>
+
             </div>
 
             <div class="back">
+
                 <p>${item.role ? "Role: " + item.role : ""}</p>
+
                 <p>${item.power ? "Power: " + item.power : ""}</p>
+
                 <p>Zone: ${item.zone}</p>
+
             </div>
 
         </div>
         `;
+
+        window[`images_${index}`] = images;
+        window[`currentImage_${index}`] = 0;
     });
 }
 
@@ -471,46 +652,267 @@ function filterAll(){
 /* 🔥 START */
 render(novazone);
 
-function flipCard(el){
-    el.classList.toggle("flipped");
-}
+function changeImage(index, direction){
 
-let holdTimer;
+    const images = window[`images_${index}`];
 
-document.addEventListener("mousedown", (e)=>{
-    if(e.target.tagName === "IMG"){
-        holdTimer = setTimeout(()=>{
-            openInspect(e.target.src);
-        }, 400); // hold 0.4 sec
+    if(!images || images.length <= 1){
+        return;
     }
+
+    let current = window[`currentImage_${index}`];
+
+    current += direction;
+
+    if(current < 0){
+        current = images.length - 1;
+    }
+
+    if(current >= images.length){
+        current = 0;
+    }
+
+    window[`currentImage_${index}`] = current;
+
+    document.getElementById(`img-${index}`).src = images[current];
+
+    document.getElementById(`counter-${index}`).textContent =
+        `${current + 1} / ${images.length}`;
+}
+
+
+
+/* ===================== CARD / ZOOM SYSTEM ===================== */
+
+let inspectImages = [];
+let inspectCurrent = 0;
+
+let clickTimer = null;
+let mobileHoldTimer = null;
+let mobileHolding = false;
+
+
+/* ===================== FLIP CARD ===================== */
+
+function flipCard(el){
+
+    el.classList.toggle("flipped");
+
+}
+
+
+/* ===================== OPEN ZOOM ===================== */
+
+function openZoom(img){
+
+    const card = img.closest(".card");
+
+    if(!card){
+        return;
+    }
+
+    const cards = Array.from(document.querySelectorAll(".card"));
+    const index = cards.indexOf(card);
+
+    const images = window[`images_${index}`];
+
+    if(images && images.length > 0){
+
+        inspectImages = images;
+
+        inspectCurrent =
+            window[`currentImage_${index}`] || 0;
+
+    }
+    else{
+
+        inspectImages = [img.src];
+
+        inspectCurrent = 0;
+
+    }
+
+    document.getElementById("inspectImg").src =
+        inspectImages[inspectCurrent];
+
+    document.getElementById("inspectView").style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   SINGLE CLICK  = ABOUT
+   DOUBLE CLICK  = ZOOM
+   ========================================================= */
+
+document.addEventListener("click", function(e){
+
+    if(e.target.tagName !== "IMG"){
+        return;
+    }
+
+    /*
+       Wait a little before flipping.
+
+       This allows us to know whether the user
+       is doing a double click.
+    */
+
+    clearTimeout(clickTimer);
+
+    clickTimer = setTimeout(function(){
+
+        const card = e.target.closest(".card");
+
+        if(card){
+
+            flipCard(card);
+
+        }
+
+    }, 250);
+
 });
 
-document.addEventListener("mouseup", ()=>{
-    clearTimeout(holdTimer);
+
+document.addEventListener("dblclick", function(e){
+
+    if(e.target.tagName !== "IMG"){
+        return;
+    }
+
+    /*
+       Cancel the normal single-click action.
+    */
+
+    clearTimeout(clickTimer);
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    openZoom(e.target);
+
 });
 
-document.addEventListener("touchstart", (e)=>{
-   if(e.target.closest(".img-box")){
-    const img = e.target.closest(".img-box").querySelector("img");
 
-    holdTimer = setTimeout(()=>{
-        openInspect(img.src);
-    }, 400); 
-}
-}
-);
+/* =========================================================
+   MOBILE
+   TAP       = ABOUT
+   HOLD      = ZOOM
+   ========================================================= */
 
-document.addEventListener("touchend", ()=>{
-    clearTimeout(holdTimer);
+document.addEventListener("touchstart", function(e){
+
+    if(e.target.tagName !== "IMG"){
+        return;
+    }
+
+    const img = e.target;
+
+    mobileHolding = false;
+
+    clearTimeout(mobileHoldTimer);
+
+    mobileHoldTimer = setTimeout(function(){
+
+        mobileHolding = true;
+
+        openZoom(img);
+
+    }, 600);
+
+}, {passive:true});
+
+
+document.addEventListener("touchend", function(e){
+
+    if(e.target.tagName !== "IMG"){
+        return;
+    }
+
+    clearTimeout(mobileHoldTimer);
+
+    /*
+       If it was a normal tap,
+       flip the card.
+
+       If it was a long press,
+       zoom has already opened,
+       so DON'T flip.
+    */
+
+    if(!mobileHolding){
+
+        const card = e.target.closest(".card");
+
+        if(card){
+
+            flipCard(card);
+
+        }
+
+    }
+
+    mobileHolding = false;
+
 });
 
-function openInspect(src){
-    document.getElementById("inspectImg").src = src;
-    document.getElementById("inspectView").style.display = "flex";
+
+document.addEventListener("touchcancel", function(){
+
+    clearTimeout(mobileHoldTimer);
+
+    mobileHolding = false;
+
+});
+
+
+/* =========================================================
+   ZOOM IMAGE SWITCH
+   ========================================================= */
+
+function changeInspectImage(direction){
+
+    if(inspectImages.length <= 1){
+        return;
+    }
+
+    inspectCurrent += direction;
+
+    if(inspectCurrent < 0){
+
+        inspectCurrent =
+            inspectImages.length - 1;
+
+    }
+
+    if(inspectCurrent >= inspectImages.length){
+
+        inspectCurrent = 0;
+
+    }
+
+    document.getElementById("inspectImg").src =
+        inspectImages[inspectCurrent];
+
 }
+
+
+/* =========================================================
+   CLOSE ZOOM
+   ========================================================= */
 
 function closeInspect(){
-    document.getElementById("inspectView").style.display = "none";
+
+    document.getElementById("inspectView").style.display =
+        "none";
+
+    inspectImages = [];
+
+    inspectCurrent = 0;
+
 }
 
 
