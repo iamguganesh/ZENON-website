@@ -303,16 +303,18 @@ body::before{
     <button class="inspect-close"
         onclick="event.stopPropagation(); closeInspect()">×</button>
 
-    <button class="inspect-prev"
+    <button id="inspectPrev"
+        class="inspect-prev"
         onclick="event.stopPropagation(); changeInspectImage(-1)">‹</button>
 
     <img id="inspectImg"
         onclick="event.stopPropagation();">
 
-    <button class="inspect-next"
+    <button id="inspectNext"
+        class="inspect-next"
         onclick="event.stopPropagation(); changeInspectImage(1)">›</button>
 
-</div> 
+</div>
 
 
     <div id="modal" class="modal">
@@ -360,6 +362,13 @@ document
 
 
 const novazone = [
+{
+    img:"kiraxplanet.webp",
+    name:"Kirax 17",
+    role:"highly advanced planet",
+    type:"other"
+},
+
 {
 img:"gegozorous.webp",
 name:"Gegozorous",
@@ -521,13 +530,32 @@ type:"characters"
     type:"other"
 },
 {
-    img:"vedtriaarmy.webp",
-    name:"Vedtria Army",
+    img:"vedtoriaarmy.webp",
+    name:"Vedtoria Army",
     role:"defenders of vedtoria",
     power:"varied combat skills and magic abilities",
     zone:"Vedtoria planet",
     type:"other"
 },
+
+{
+    images:[
+        "nature1.webp",
+        "nature2.webp",
+        "nature3.webp",
+        "nature4.webp",
+        "nature5.webp",
+        "nature6.webp",
+        "nature7.webp",
+        "nature8.webp",
+    ],
+    name:"Vedtoria planet look",
+    role:"livings and zones",
+    power:"natural beauty and biodiversity",
+    zone:"Vedtoria planet",
+    type:"other"
+},
+
 
 {
     images:[
@@ -549,9 +577,35 @@ type:"characters"
         "guard1.webp",
         "guard2.webp"
     ],
-    name:"Blue guard-1",
+    name:"Blue guards-1",
     role:"defensive unit",
     power:"attack and defense",
+    zone:"Kirax Planet",
+    type:"other"
+},
+
+{
+    images:[
+        "guard2_1.webp",
+        "guard2_2.webp",
+        "guard2_3.webp"
+    ],
+    name:"Blue guards-2",
+    role:"defensive and attacking unit",
+    power:"fold and unfold weapons, hyperwrap engine, rapid fire, quick arrival",
+    zone:"Kirax Planet",
+    type:"other"
+},
+
+{
+    images:[
+        "guard3_1.webp",
+        "guard3_2.webp",
+        "guard3_3.webp"
+    ],
+    name:"Blue guards-3",
+    role:"support and defensive unit",
+    power:"sheild,detection,destroyer,rapid fire",
     zone:"Kirax Planet",
     type:"other"
 },
@@ -562,11 +616,28 @@ type:"characters"
         "city2.webp",
         "city3.webp",
         "city4.webp",
+        "city5.webp"
     ],
     name:"Kirax Cities",
     role:"Kiraxians region",
     power:"home of kiraxians",
     zone:"Kirax Planet",
+    type:"other"
+}
+
+{
+
+    image:[
+        "za1.webp",
+        "za2.webp",
+        "za3.webp",
+        "za4.webp",
+        "za5.webp"
+    ],
+    name:"Zetorex's Army",
+    role:"destroyers",
+    power:"multi combat skills and advanced weaponry",
+    zone: "Warship",
     type:"other"
 }
 ];
@@ -692,15 +763,6 @@ let mobileHoldTimer = null;
 let mobileHolding = false;
 
 
-/* ===================== FLIP CARD ===================== */
-
-function flipCard(el){
-
-    el.classList.toggle("flipped");
-
-}
-
-
 /* ===================== OPEN ZOOM ===================== */
 
 function openZoom(img){
@@ -735,6 +797,29 @@ function openZoom(img){
     document.getElementById("inspectImg").src =
         inspectImages[inspectCurrent];
 
+
+    /* SHOW ARROWS ONLY FOR MULTIPLE IMAGES */
+
+    const prevBtn =
+        document.getElementById("inspectPrev");
+
+    const nextBtn =
+        document.getElementById("inspectNext");
+
+    if(inspectImages.length > 1){
+
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
+
+    }
+    else{
+
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+
+    }
+
+
     document.getElementById("inspectView").style.display =
         "flex";
 
@@ -744,33 +829,31 @@ function openZoom(img){
 /* =========================================================
    DESKTOP
    SINGLE CLICK  = ABOUT
+   SECOND CLICK  = IMAGE
    DOUBLE CLICK  = ZOOM
    ========================================================= */
 
 document.addEventListener("click", function(e){
 
-    if(e.target.tagName !== "IMG"){
+    const card = e.target.closest(".card");
+
+    if(!card){
         return;
     }
 
-    /*
-       Wait a little before flipping.
-
-       This allows us to know whether the user
-       is doing a double click.
-    */
+    /* Ignore image navigation buttons */
+    if(
+        e.target.classList.contains("image-prev") ||
+        e.target.classList.contains("image-next")
+    ){
+        return;
+    }
 
     clearTimeout(clickTimer);
 
     clickTimer = setTimeout(function(){
 
-        const card = e.target.closest(".card");
-
-        if(card){
-
-            flipCard(card);
-
-        }
+        card.classList.toggle("flipped");
 
     }, 250);
 
@@ -783,10 +866,6 @@ document.addEventListener("dblclick", function(e){
         return;
     }
 
-    /*
-       Cancel the normal single-click action.
-    */
-
     clearTimeout(clickTimer);
 
     e.preventDefault();
@@ -796,62 +875,70 @@ document.addEventListener("dblclick", function(e){
 
 });
 
-
 /* =========================================================
    MOBILE
-   TAP       = ABOUT
+   TAP       = ABOUT / IMAGE
    HOLD      = ZOOM
    ========================================================= */
 
 document.addEventListener("touchstart", function(e){
 
-    if(e.target.tagName !== "IMG"){
+    const card = e.target.closest(".card");
+
+    if(!card){
         return;
     }
 
-    const img = e.target;
+    /* Ignore image navigation buttons */
+    if(
+        e.target.classList.contains("image-prev") ||
+        e.target.classList.contains("image-next")
+    ){
+        return;
+    }
+
+    const img = e.target.closest("img");
 
     mobileHolding = false;
 
     clearTimeout(mobileHoldTimer);
 
-    mobileHoldTimer = setTimeout(function(){
+    if(img){
 
-        mobileHolding = true;
+        mobileHoldTimer = setTimeout(function(){
 
-        openZoom(img);
+            mobileHolding = true;
 
-    }, 600);
+            openZoom(img);
+
+        }, 600);
+
+    }
 
 }, {passive:true});
 
 
 document.addEventListener("touchend", function(e){
 
-    if(e.target.tagName !== "IMG"){
+    const card = e.target.closest(".card");
+
+    if(!card){
+        return;
+    }
+
+    /* Ignore image navigation buttons */
+    if(
+        e.target.classList.contains("image-prev") ||
+        e.target.classList.contains("image-next")
+    ){
         return;
     }
 
     clearTimeout(mobileHoldTimer);
 
-    /*
-       If it was a normal tap,
-       flip the card.
-
-       If it was a long press,
-       zoom has already opened,
-       so DON'T flip.
-    */
-
     if(!mobileHolding){
 
-        const card = e.target.closest(".card");
-
-        if(card){
-
-            flipCard(card);
-
-        }
+        card.classList.toggle("flipped");
 
     }
 
