@@ -1,1032 +1,798 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04040c">
+<link rel="icon" type="image/webp" href="favicon.webp">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preload" as="image" href="logo.webp" type="image/webp">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZENON FICTIONAL UNIVERSE | Kirax 17 Sci-Fi Story World</title>
+<meta name="description" content="ZENON Fictional Universe is a sci-fi world created by K.G.ZENON. Explore Kirax 17, cosmic wars, monsters, futuristic cities, and legendary characters in an epic story universe.">
+<meta name="keywords" content="ZENON, Kirax 17, sci-fi universe, fictional universe, K.G.ZENON, cosmic war, monsters, Zetorex, Gegozorous, Vedtoria, futuristic story">
+<meta name="author" content="K.G.ZENON">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://iamguganesh.github.io/ZENON-website/">
 
-    <title>ZENON FICTIONAL UNIVERSE | Kirax 17 Sci-Fi Story World</title>
+<!-- Social previews (image URLs must be absolute for WhatsApp / Facebook / X) -->
+<meta property="og:title" content="ZENON FICTIONAL UNIVERSE">
+<meta property="og:description" content="Enter Kirax 17 — a sci-fi universe of cosmic wars, monsters, and futuristic civilizations created by K.G.ZENON.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamguganesh.github.io/ZENON-website/">
+<meta property="og:image" content="https://iamguganesh.github.io/ZENON-website/galaxy-16x9.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZENON FICTIONAL UNIVERSE">
+<meta name="twitter:description" content="Sci-fi story universe: Kirax 17, Zetorex, Gegozorous and cosmic war saga.">
+<meta name="twitter:image" content="https://iamguganesh.github.io/ZENON-website/galaxy-16x9.jpeg">
 
-    <meta name="description" content="ZENON Fictional Universe is a sci-fi world created by K.G.ZENON. Explore Kirax 17, cosmic wars, monsters, futuristic cities, and legendary characters in an epic story universe.">
+<!-- One font request. Orbitron is a variable font, so 400–900 is a single file. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 
-    <meta name="keywords" content="ZENON, Kirax 17, sci-fi universe, fictional universe, K.G.ZENON, cosmic war, monsters, Zetorex, Gegozorous, Vedtoria, futuristic story">
+<script>
+/* Marks JS as available (so hidden intro states only apply when JS runs),
+   plus a safety net: if anything fails, reveal the page after 3.5s. */
+(function(){var r=document.documentElement;r.classList.add('js');
+setTimeout(function(){if(!r.classList.contains('go')){r.style.setProperty('--k','0');r.classList.add('go');r.classList.remove('lock')}},7500)})();
+</script>
 
-    <meta name="author" content="K.G.ZENON">
-
-    <meta name="robots" content="index, follow">
-
-    <link rel="canonical" href=" https://iamguganesh.github.io/ZENON-website/">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Open Graph (WhatsApp / Instagram / Facebook preview) -->
-    <meta property="og:title" content="ZENON FICTIONAL UNIVERSE">
-    <meta property="og:description" content="Enter Kirax 17 — a sci-fi universe of cosmic wars, monsters, and futuristic civilizations created by K.G.ZENON.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="galaxy-16x9.jpeg">
-
-    <!-- Twitter Preview -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ZENON FICTIONAL UNIVERSE">
-    <meta name="twitter:description" content="Sci-fi story universe: Kirax 17, Zetorex, Gegozorous and cosmic war saga.">
-    <meta name="twitter:image" content="galaxy-16x9.jpeg">
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            background:#050510;
-            color:white;
-            font-family:Arial, sans-serif;
-            overflow-x:hidden;
-            min-height:100vh;
-            position:relative;
-            isolation:isolate;
-        }
-
-
-
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-
-    background:
-
-    /*  GALAXY IMAGE */
-    url("galaxy-16x9.webp"),
-
-    /* SMALL STARS */
-    radial-gradient(white 1px, transparent 1px),
-
-    /* MEDIUM STARS */
-    radial-gradient(rgba(255,255,255,0.7) 1.5px, transparent 1.5px),
-
-    /* LARGE STARS */
-    radial-gradient(rgba(255,255,255,0.9) 2px, transparent 2px),
-
-    /* CYAN SPACE FOG */
-    radial-gradient(
-    circle at 20% 20%,
-    rgba(0,255,255,0.10),
-    transparent 35%
-    ),
-
-    /* PURPLE SPACE GLOW */
-    radial-gradient(
-    circle at 70% 70%,
-    rgba(140,0,255,0.08),
-    transparent 40%
-    );
-
-    background-size:
-    cover,
-    120px 120px,
-    180px 180px,
-    250px 250px,
-    auto,
-    auto;
-
-    background-repeat:
-    no-repeat,
-    repeat,
-    repeat,
-    repeat,
-    no-repeat,
-    no-repeat;
-
-    background-position:
-    center,
-    0 0,
-    40px 60px,
-    100px 120px,
-    center,
-    center;
-
-    opacity:0.25;
-
-    filter:
-brightness(1.1)
-drop-shadow(0 0 25px rgba(0,255,255,0.25));
-
-    z-index:-3;
-
-    animation:
-    universeMove 60s linear infinite,
-    twinkle 6s ease-in-out infinite alternate;
+<style>
+:root{
+  --bg:#04040c;
+  --cyan:#37f0ff;
+  --gold:#ffc24d;
+  --ember:#ff6a1a;
+  --text:#e9f2ff;
+  --muted:#9fb3cc;
+  --k:1;                       /* intro speed: 1 = full, .3 = quick, 0 = instant */
+  --display:'Orbitron','Segoe UI',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,.84,.24,1);
 }
-/* DARK OVERLAY DEPTH */
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg);scroll-behavior:smooth}
+html.lock{overflow:hidden}
+body{
+  color:var(--text);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  min-height:100vh;overflow-x:hidden;isolation:isolate;
+  -webkit-font-smoothing:antialiased;
+}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-
-    background:
-
-    /* CYAN SPACE GLOW */
-    radial-gradient(
-    circle at 30% 30%,
-    rgba(0,255,255,0.16),
-    transparent 35%
-    ),
-
-    /* PURPLE GALAXY GLOW */
-    radial-gradient(
-    circle at 75% 25%,
-    rgba(140,0,255,0.16),
-    transparent 40%
-    ),
-
-    /* BLUE LIGHT */
-    radial-gradient(
-    circle at 60% 70%,
-    rgba(0,120,255,0.12),
-    transparent 45%
-    ),
-
-    /* DARK DEPTH */
-    radial-gradient(
-    circle at center,
-    transparent 20%,
-    rgba(0,0,0,0.50) 100%
-    );
-
-    z-index:-2;
-
-    animation:spaceGlow 8s ease-in-out infinite alternate;
+/* ───────── BACKGROUND (3 cheap fixed layers, no filters) ───────── */
+.galaxy{position:fixed;inset:0;z-index:-3;background:center/cover no-repeat;opacity:0;transition:opacity 3s ease}
+.galaxy.on{opacity:.6}
+#space{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+.vignette{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 25% 20%,rgba(0,220,255,.10),transparent 70%),
+    radial-gradient(55% 50% at 80% 25%,rgba(140,60,255,.12),transparent 70%),
+    radial-gradient(70% 60% at 60% 85%,rgba(0,110,255,.09),transparent 70%),
+    radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,8,.6) 100%);
 }
 
-@keyframes spaceGlow{
+/* ───────── CINEMATIC OVERLAYS ───────── */
+.scrim{position:fixed;inset:0;z-index:0;pointer-events:none;background:#02020a;opacity:0}
+.flash{
+  position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0;
+  background:radial-gradient(circle at 50% 46%,rgba(255,255,255,.95),rgba(140,225,255,.4) 28%,transparent 62%);
+}
+.flash.pop{animation:flash calc(1.1s*var(--k)) ease-out}
+@keyframes flash{0%{opacity:0}14%{opacity:.85}100%{opacity:0}}
 
-    from{
-        filter:brightness(1);
-    }
+.bar{display:none;position:fixed;left:0;right:0;height:clamp(44px,13vh,140px);background:#000;z-index:50;pointer-events:none}
+.js .bar{display:block}
+.bar.t{top:0}.bar.b{bottom:0}
+.go .bar.t{animation:barT calc(1.5s*var(--k)) cubic-bezier(.7,0,.2,1) calc(3s*var(--k)) both}
+.go .bar.b{animation:barB calc(1.5s*var(--k)) cubic-bezier(.7,0,.2,1) calc(3s*var(--k)) both}
+@keyframes barT{to{transform:translateY(-100%)}}
+@keyframes barB{to{transform:translateY(100%)}}
 
-    to{
-        filter:brightness(1.15);
-    }
+.skip{
+  position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;z-index:60;
+  padding:9px 16px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);color:#dfe9f7;
+  font:400 .68rem/1 var(--display);letter-spacing:.14em;
+  animation:rvIn .6s ease .8s both;
+}
+.skip:hover{border-color:var(--cyan);color:#fff}
+
+
+/* ───────── ENTRANCE: the K.G.Z signature ───────── */
+.gate{position:fixed;inset:0;z-index:35;display:none;place-items:center;pointer-events:none}
+.js .gate{display:grid}
+.sig-wrap{
+  position:relative;width:min(62vw,300px);aspect-ratio:1;border-radius:50%;
+  box-shadow:0 0 70px rgba(255,190,90,.22),0 0 140px rgba(90,110,255,.18);
+}
+.sig{display:block;width:100%;height:100%;border-radius:50%}
+.sig-wrap::after{                                   /* gold light sweep across the disc */
+  content:"";position:absolute;inset:0;border-radius:50%;mix-blend-mode:screen;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,236,190,.5) 50%,transparent 58%) 160% 0/250% 100% no-repeat;
+}
+.spark{                                             /* glint on the crown */
+  position:absolute;left:50.3%;top:32.5%;width:19%;aspect-ratio:1;opacity:0;pointer-events:none;mix-blend-mode:screen;
+  background:
+    radial-gradient(circle,#fff 0,rgba(255,232,170,.9) 9%,transparent 42%),
+    linear-gradient(90deg,transparent 46%,rgba(255,244,210,.95) 50%,transparent 54%),
+    linear-gradient(0deg,transparent 46%,rgba(255,244,210,.95) 50%,transparent 54%);
+}
+.js:not(.gate-on) .sig-wrap{opacity:0}
+.gate-on .sig-wrap{animation:sigIn 1.5s var(--ease) .15s both,sigOut 1s cubic-bezier(.5,0,.9,.4) 1.9s forwards}
+.gate-on .sig-wrap::after{animation:glint 1.3s ease-in-out 1s both}
+.gate-on .spark{animation:spark 1.1s ease-out 1.25s both}
+@keyframes sigIn{from{opacity:0;transform:scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes sigOut{from{opacity:1;transform:none}to{opacity:0;transform:scale(.5)}}
+@keyframes glint{from{background-position:160% 0}to{background-position:-60% 0}}
+@keyframes spark{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.1)}
+  35%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(.6) rotate(45deg)}
+}
+.sig-mini{display:block;width:44px;height:44px;border-radius:50%;margin:0 auto 12px;opacity:.9}
+
+/* ───────── HERO / INTRO SCENE ───────── */
+.hero{
+  position:relative;z-index:1;overflow:hidden;
+  min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:clamp(72px,12vh,120px) 20px 96px;
+}
+.presents{
+  font:400 clamp(.62rem,1.9vw,.8rem)/1 var(--display);
+  letter-spacing:.5em;padding-left:.5em;color:var(--cyan);opacity:.9;
+  margin-bottom:clamp(18px,3.5vh,34px);position:relative;z-index:3;
+}
+.title{position:relative;display:flex;flex-direction:column;align-items:center;font-family:var(--display);line-height:1}
+/* warm glow behind the title (a gradient, not a blur filter — much cheaper) */
+.title::before{
+  content:"";position:absolute;z-index:-1;left:50%;top:36%;
+  width:min(120vw,1100px);aspect-ratio:2/1;transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side,rgba(96,110,255,.30),rgba(70,50,200,.10) 55%,transparent);
+  pointer-events:none;
+}
+.t-main{display:flex;gap:.03em;font-weight:900;font-size:clamp(3.6rem,17vw,9.5rem)}
+.t-main span{
+  display:inline-block;padding:0 .02em;
+  color:transparent;-webkit-text-fill-color:transparent;
+  background:
+    linear-gradient(105deg,transparent 42%,rgba(255,255,255,.95) 50%,transparent 58%) 130% 0/300% 100% no-repeat,
+    linear-gradient(180deg,#ffffff 0%,#e6e2ff 18%,#a99fff 43%,#2a2278 50%,#5b50d2 56%,#aaa0ff 76%,#efecff 100%);
+  -webkit-text-stroke:1.5px rgba(16,9,56,.95);
+  -webkit-background-clip:text;background-clip:text;
+}
+.lockup{position:relative;display:flex;justify-content:center;width:min(94vw,1000px);margin:clamp(24px,5.5vh,56px) 0 clamp(2px,1vh,10px)}
+.mono-wrap{position:absolute;inset:0;transform:translateY(-3%);pointer-events:none}
+.mono{position:absolute;inset:0;margin:auto;width:100%;height:auto}
+.ring{position:absolute;inset:0;margin:auto;width:min(58vw,520px);height:auto;fill:none;stroke-linecap:round}
+.ring .r1{stroke:url(#rg);stroke-width:1.2;stroke-dasharray:34 3 18 5 9 3 20 8;opacity:.85}
+.ring .r2{stroke:rgba(150,170,255,.4);stroke-width:.5;stroke-dasharray:60 6 25 9}
+.t-main{position:relative}
+@media (orientation:portrait){.lockup{aspect-ratio:1/.6;align-items:center;margin-top:clamp(10px,2vh,24px)}.ring{width:min(66vw,520px)}}
+/* slow god-rays behind the lockup */
+.title::after{
+  content:"";position:absolute;z-index:-1;left:50%;top:42%;width:min(150vw,1500px);aspect-ratio:1;
+  transform:translate(-50%,-50%);pointer-events:none;
+  background:repeating-conic-gradient(rgba(150,160,255,.11) 0 1deg,transparent 1deg 7.5deg);
+  -webkit-mask-image:radial-gradient(closest-side,rgba(0,0,0,.9),transparent 68%);
+  mask-image:radial-gradient(closest-side,rgba(0,0,0,.9),transparent 68%);
+}
+.flare{
+  width:min(78vw,720px);height:2px;margin:clamp(12px,2.2vh,20px) 0;border-radius:2px;
+  background:linear-gradient(90deg,transparent,#7d6bff 22%,#fff 50%,#37f0ff 78%,transparent);
+  box-shadow:0 0 18px 2px rgba(125,107,255,.55),0 0 36px 6px rgba(55,240,255,.22);
+}
+.t-sub{
+  font-weight:700;font-size:clamp(.72rem,2.9vw,1.5rem);
+  letter-spacing:.42em;padding-left:.42em;white-space:nowrap;
+  color:#f3f8ff;text-shadow:0 0 18px rgba(55,240,255,.45);
+}
+.lead{
+  max-width:600px;margin:clamp(22px,4vh,38px) auto 0;
+  color:#c9d8ee;font-size:clamp(.98rem,2.6vw,1.12rem);line-height:1.75;
+}
+.lead em{color:var(--gold);font-style:normal;font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(26px,5vh,42px)}
+.cta .btn{min-width:220px}
+.cue{
+  position:absolute;left:0;right:0;margin:0 auto;width:max-content;
+  bottom:clamp(18px,4vh,34px);display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:var(--muted);font:400 .62rem/1 var(--display);letter-spacing:.4em;padding-left:.4em;text-decoration:none;
+}
+.cue i{width:1px;height:38px;background:linear-gradient(var(--cyan),transparent);transform-origin:top;animation:cue 2.2s ease-in-out 5}
+@keyframes cue{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* Intro choreography — everything is driven by --k, so "skip" just sets --k to 0 */
+.js:not(.go) .rv,
+.js:not(.go) .t-main span,
+.js:not(.go) .t-sub,
+.js:not(.go) .flare,
+.js:not(.go) .mono,
+.js:not(.go) .ring,
+.js:not(.go) .title::after,
+.js:not(.go) .title::before{opacity:0}
+
+.go .rv{animation:rvIn calc(var(--d,1s)*var(--k)) var(--ease) calc(var(--w,0s)*var(--k)) both}
+@keyframes rvIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.go .t-main span{
+  animation:
+    letterIn calc(1s*var(--k)) var(--ease) calc((2.35s + var(--i)*.1s)*var(--k)) both,
+    sheen calc(1.5s*var(--k)) ease-in-out calc((3.5s + var(--i)*.1s)*var(--k)) both;
+}
+@keyframes letterIn{
+  from{opacity:0;transform:translateY(.06em) scale(1.6);filter:blur(12px)}
+  to{opacity:1;transform:none;filter:none}
+}
+@keyframes sheen{from{background-position:130% 0,0 0}to{background-position:-30% 0,0 0}}
+
+.go .flare{animation:flareIn calc(1.1s*var(--k)) var(--ease) calc(3s*var(--k)) both}
+@keyframes flareIn{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:none}}
+
+.go .t-sub{animation:subIn calc(1.8s*var(--k)) var(--ease) calc(3.2s*var(--k)) both}
+@keyframes subIn{from{opacity:0;letter-spacing:.6em}to{opacity:1;letter-spacing:.42em}}
+
+.go .title::before{animation:fadeIn calc(1.6s*var(--k)) ease calc(1.7s*var(--k)) both}
+.go .title::after{animation:fadeIn calc(2s*var(--k)) ease calc(2.2s*var(--k)) both,spin 80s linear calc(2.2s*var(--k)) 1 both}
+@keyframes spin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.go .mono{animation:monoIn calc(1.9s*var(--k)) var(--ease) calc(1.75s*var(--k)) both}
+@keyframes monoIn{from{opacity:0;transform:scale(1.2)}to{opacity:1;transform:none}}
+.go .ring{animation:ringIn calc(1.7s*var(--k)) var(--ease) calc(2.05s*var(--k)) both}
+@keyframes ringIn{from{opacity:0;transform:scale(.82) rotate(-50deg)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ───────── BUTTONS ───────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;
+  border-radius:10px;border:1px solid rgba(55,240,255,.45);background:rgba(55,240,255,.08);
+  color:#eaffff;font:700 .8rem/1 var(--display);letter-spacing:.08em;text-decoration:none;cursor:pointer;
+  transition:background .25s,border-color .25s,box-shadow .25s,transform .25s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:hover{background:rgba(55,240,255,.2);border-color:var(--cyan);box-shadow:0 0 20px rgba(55,240,255,.3)}
+.btn:active{transform:scale(.98)}
+.btn.primary,.btn.buy{
+  background:linear-gradient(135deg,rgba(255,170,60,.26),rgba(255,90,20,.2));
+  border-color:rgba(255,190,90,.65);color:#fff4dc;
+}
+.btn.primary:hover,.btn.buy:hover{background:linear-gradient(135deg,rgba(255,170,60,.5),rgba(255,90,20,.42));border-color:var(--gold);box-shadow:0 0 20px rgba(255,160,50,.35)}
+
+/* ───────── BOOKS ───────── */
+.books{position:relative;z-index:1;padding:clamp(56px,10vh,110px) 20px 40px}
+.sec-head{text-align:center;max-width:680px;margin:0 auto clamp(32px,6vh,52px)}
+.sec-head h2{font:700 clamp(1.5rem,4.6vw,2.3rem)/1.2 var(--display);color:#fff;letter-spacing:.03em}
+.notice{
+  position:relative;overflow:hidden;margin:22px auto 0;padding:12px 16px;max-width:560px;
+  border:1px solid rgba(55,240,255,.5);border-radius:10px;
+  color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.5;
+  box-shadow:0 0 10px rgba(55,240,255,.2),inset 0 0 10px rgba(55,240,255,.12);
+}
+.notice::before{
+  content:"";position:absolute;top:0;left:-60%;width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(55,240,255,.22),transparent);
+  transform:skewX(-20deg);animation:scan 3s linear infinite;
+}
+@keyframes scan{to{left:120%}}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1120px;margin:0 auto}
+.card{
+  display:flex;flex-direction:column;overflow:hidden;border-radius:14px;
+  background:linear-gradient(180deg,rgba(14,22,44,.88),rgba(8,10,24,.94));
+  border:1px solid rgba(55,240,255,.2);
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+  transition:border-color .3s,box-shadow .3s;
+}
+.cover{position:relative;aspect-ratio:var(--cover-ratio,3/4);overflow:hidden;background:#0a1020}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,rgba(8,10,24,.92));pointer-events:none}
+.card-body{display:flex;flex-direction:column;justify-content:space-between;gap:18px;flex:1;padding:18px 18px 20px}
+.card h3{font:700 1rem/1.45 var(--display);color:#fff}
+.actions{display:grid;gap:10px}
+@media (hover:hover){
+  .card:hover{border-color:rgba(55,240,255,.65);box-shadow:0 14px 38px rgba(0,0,0,.55),0 0 26px rgba(55,240,255,.18)}
 }
 
-/* SLOW COSMIC MOVEMENT */
+footer{position:relative;z-index:1;text-align:center;color:var(--muted);font-size:.8rem;padding:36px 20px 44px}
 
-@keyframes universeMove{
-    0%{
-        transform: translate(0px, 0px) scale(1.02);
-    }
-    25%{
-        transform: translate(-10px, 8px) scale(1.03);
-    }
-    50%{
-        transform: translate(8px, -6px) scale(1.02);
-    }
-    75%{
-        transform: translate(-6px, -10px) scale(1.03);
-    }
-    100%{
-        transform: translate(0px, 0px) scale(1.02);
-    }
+/* ───────── RESPONSIVE ───────── */
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr);gap:22px}}
+@media (max-width:560px){
+  .grid{grid-template-columns:1fr;gap:16px}
+  /* compact horizontal cards on phones: shorter scroll, same images */
+  .card{flex-direction:row;min-height:210px}
+  .cover{width:38%;flex:none;aspect-ratio:auto}
+  .cover img{position:absolute;inset:0}
+  .cover::after{display:none}
+  .card-body{padding:14px;gap:14px}
+  .card h3{font-size:.92rem}
+  .btn{min-height:42px;padding:0 12px;font-size:.72rem}
 }
 
-/* STAR TWINKLE */
-
-@keyframes twinkle{
-
-    0%{
-        opacity:0.85;
-        filter:brightness(1);
-    }
-
-    50%{
-        opacity:1;
-        filter:brightness(1.2);
-    }
-
-    100%{
-        opacity:0.9;
-        filter:brightness(1);
-    }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
-
-        /* HERO SECTION */
-
-        .hero{
-            text-align:center;
-            padding:100px 20px 60px;
-            z-index:5;
-        }
-
-        .hero h1{
-
-    font-family:'Orbitron', sans-serif;
-
-    font-size:clamp(2.5rem, 6vw, 5rem);
-
-    background:linear-gradient(
-    to right,
-    #fc9301,
-    #f80202,
-    #ffc800
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    text-shadow:
-    0 0 4px rgba(232, 5, 5, 0.08);
-
-    margin-bottom:20px;
-            animation:glowPulse 3s infinite alternate;
-        }
-
-        @keyframes glowPulse{
-
-    from{
-        text-shadow:
-        0 0 10px rgba(255,170,80,0.5),
-        0 0 20px rgba(255,120,0,0.3);
-    }
-
-    to{
-        text-shadow:
-        0 0 20px rgba(255,200,120,0.8),
-        0 0 40px rgba(255,140,0,0.5);
-    }
-}
-
-        .hero p{
-
-    max-width:700px;
-    margin:auto;
-
-    color:#f5fd0c;
-
-    font-size:1.1rem;
-
-    line-height:1.8;
-
-    text-shadow:
-    0 0 3px rgba(190, 71, 71, 0.05);
-    animation:subtitleGlow 3s infinite alternate;
-}
-
-@keyframes subtitleGlow{
-
-    from{
-        text-shadow:
-        0 0 5px rgba(255,255,255,0.3),
-        0 0 12px rgba(0,255,255,0.35),
-        0 0 25px rgba(0,255,255,0.18);
-    }
-
-    to{
-        text-shadow:
-        0 0 8px rgba(255,255,255,0.5),
-        0 0 20px rgba(0,255,255,0.6),
-        0 0 40px rgba(0,255,255,0.3);
-    }
-}
-
-.moving-stars{
-    position:fixed;
-    inset:0;
-
-    overflow:hidden;
-
-    z-index:2;
-
-    pointer-events:none;
-
-}
-.hero,
-.books-section{
-    position:relative;
-    z-index:10;
-}
-
-
-.moving-stars span{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-    border-radius:50%;
-    opacity:0.8;
-
-    animation:floatStars linear infinite;
-}
-
-.moving-stars span.tail{
-    width:1px;
-    height:1px;
-
-    box-shadow:
-        0 0 6px rgba(255,255,255,0.8),
-        0 0 15px rgba(120,200,255,0.5);
-
-    filter: blur(0.2px);
-}
-
-.moving-stars span.tail::after{
-    content:"";
-    position:absolute;
-    width:60px;
-    height:2px;
-
-    background:linear-gradient(to left,
-        rgba(255,255,255,0.6),
-        transparent
-    );
-
-    transform:translateX(-60px);
-    top:0;
-    left:0;
-
-    filter:blur(2px);
-    opacity:0.6;
-}
-
-@keyframes floatStars {
-    0% {
-        transform: translate(0px, 0px);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    50% {
-        transform: translate(var(--dx, 30px), var(--dy, 200px));
-    }
-
-    100% {
-        transform: translate(calc(var(--dx, 30px) * -1), 100vh);
-        opacity: 0;
-    }
-}
-
-#shootingCanvas{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:1;
-}
-
-.cosmic-core{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    z-index:0;
-
-    background:radial-gradient(
-        circle,
-        rgba(0,255,255,0.10),
-        rgba(0,0,0,0) 60%
-    );
-
-    @media (max-width: 768px) {
-    .cosmic-core {
-        display: none;
-    }
-}
-    animation:corePulse 6s ease-in-out infinite;
-}
-
-@keyframes corePulse{
-    0% { transform:translate(-50%,-50%) scale(1); opacity:0.6; }
-    50% { transform:translate(-50%,-50%) scale(1.1); opacity:0.9; }
-    100% { transform:translate(-50%,-50%) scale(1); opacity:0.6; }
-}
-
-        /* BOOK SECTION */
-
-        .books-section{
-            padding:40px 20px 80px;
-            z-index:5;
-        }
-
-        .container{
-            display:grid;
-            grid-template-columns:
-            repeat(auto-fit, minmax(230px, 1fr));
-
-            gap:35px;
-            max-width:1300px;
-            margin:auto;
-        }
-
-        /* CARD DESIGN */
-
-        .card{
-
-            background:
-            rgba(255,255,255,0.03);
-
-            border:1px solid rgba(0,255,255,0.3);
-
-            border-radius:18px;
-
-            overflow:hidden;
-
-            backdrop-filter:blur(5px);
-
-            box-shadow:
-            0 0 15px rgba(0,255,255,0.15);
-
-            transition:0.4s ease;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    animation: floatCard 7s ease-in-out infinite;
-
-
-            display:flex;
-            flex-direction:column;
-
-            animation: floatCard 12s ease-in-out infinite;
-    will-change: transform;
-
-
-}
-
-        .card:nth-child(1){
-    animation-duration: 7s;
-}
-
-    .card:nth-child(2){
-    animation-delay: 8s;
-}
-
-.card:nth-child(3){
-    animation-delay: 8.5s;
-}
-
-.card:nth-child(4){
-    animation-delay: 7s;
-}
-
-
-@keyframes floatCard {
-    0% {
-        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-    }
-    50% {
-        transform: translateY(-6px) ;
-    }
-    100% {
-        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-    }
-}
-
-
-        .card:hover{
-    transform: translateY(-15px) scale(1.03) rotateX(6deg) rotateY(-4deg);
-
-
-            box-shadow:
-            0 0 25px rgba(0,255,255,0.5);
-
-            border-color:cyan;
-        }
-
-        .card img{
-            width:100%;
-            height:320px;
-            object-fit:cover;
-        }
-
-        .card-content{
-            padding:20px;
-            display:flex;
-            flex-direction:column;
-            justify-content:space-between;
-            flex:1;
-        }
-
-        .card h3{
-            font-family:'Orbitron', sans-serif;
-            font-size:1rem;
-            margin-bottom:20px;
-            color:white;
-            line-height:1.5;
-        }
-
-        /* BUTTONS */
-
-        .buttons{
-            display:flex;
-            flex-direction:column;
-            gap:12px;
-        }
-
-        .buttons a{
-            text-decoration:none;
-        }
-
-        button{
-            width:100%;
-            padding:12px;
-            border:none;
-            border-radius:10px;
-
-            background:
-            linear-gradient(135deg,
-            rgba(0,255,255,0.2),
-            rgba(0,100,255,0.2));
-
-            color:white;
-
-            font-family:'Orbitron', sans-serif;
-
-            cursor:pointer;
-
-            transition:0.3s ease;
-
-            border:1px solid rgba(0,255,255,0.4);
-        }
-
-        button:hover{
-            background:
-            linear-gradient(135deg,
-            cyan,
-            blue);
-
-            transform:scale(1.03);
-
-            box-shadow:
-            0 0 15px cyan;
-        }
-
-        /* MOBILE */
-
-        @media(max-width:600px){
-
-            .hero{
-                padding-top:70px;
-            }
-
-            .hero p{
-                font-size:1rem;
-            }
-
-            .card img{
-                height:280px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-body::before,
-body::after {
-    animation: none !important;
-}
-}
-
-@media (max-width: 768px) {
-    body::before {
-        background:
-        url("galaxy-9x16.webp"),
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(rgba(255,255,255,0.7) 1.5px, transparent 1.5px),
-        radial-gradient(rgba(255,255,255,0.9) 2px, transparent 2px),
-        radial-gradient(circle at 20% 20%, rgba(0,255,255,0.10), transparent 35%),
-        radial-gradient(circle at 70% 70%, rgba(140,0,255,0.08), transparent 40%);
-    }
-}
-
-    </style>
-
+</style>
 </head>
 
 <body>
 
-
-    <canvas id="shootingCanvas"></canvas>
-
-<script>
-const canvas = document.getElementById("shootingCanvas");
-const ctx = canvas.getContext("2d");
-
-let running = true;
-let frame = 0;
-
-function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-function rand(a,b){
-    return a + Math.random()*(b-a);
-}
-
-
-const stars = [];
-for(let i=0;i<20;i++){
-    stars.push({
-        x: rand(0, innerWidth),
-        y: rand(0, innerHeight),
-        depth: Math.random(),
-        speed: rand(0.1, 0.4),
-        size: Math.random() < 0.5 ? 1 : 1.5,
-        phase: rand(0, Math.PI*2)
-    });
-}
-
-const streaks = [];
-
-function spawnStreak(){
-    return {
-        x: rand(-200, innerWidth),
-        y: rand(0, innerHeight * 0.6),
-        vx: rand(1.5, 3.5),
-        vy: rand(0.8, 2),
-        life: 1
-    };
-}
-
-document.addEventListener("visibilitychange", () => {
-    running = !document.hidden;
-});
-
-let lastTime = 0;
-
-function draw(time){
-
-    if(!running) return;
-
-    if(time - lastTime < 40){
-        requestAnimationFrame(draw);
-        return;
-    }
-
-    lastTime = time;
-
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    for(let s of stars){
-
-        s.x += s.speed;
-        if(s.x > innerWidth) s.x = 0;
-
-        ctx.beginPath();
-        ctx.fillStyle = "rgba(255,255,255,0.6)";
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
-        ctx.fill();
-    }
-
-    requestAnimationFrame(draw);
-}
-
-draw();
-
-
-document.addEventListener("visibilitychange", () => {
-    running = !document.hidden;
-    if(running) draw();
-});
-
-if(window.innerWidth < 768){
-
-    stars.length = 20;
-
-}
-
-
-</script>
-
-<div class="cosmic-core"></div>
-
-
-
-
-    <div class="moving-stars">
-
-<span style="left:5%; animation-duration:15s;"></span>
-<span style="left:10%; animation-duration:18s;"></span>
-<span style="left:15%; animation-duration:20s;"></span>
-<span style="left:20%; animation-duration:22s;"></span>
-<span style="left:25%; animation-duration:16s;"></span>
-<span style="left:30%; animation-duration:24s;"></span>
-<span style="left:35%; animation-duration:19s;"></span>
-<span style="left:40%; animation-duration:21s;"></span>
-<span style="left:45%; animation-duration:17s;"></span>
-<span style="left:50%; animation-duration:25s;"></span>
-<span style="left:55%; animation-duration:18s;"></span>
-<span style="left:60%; animation-duration:20s;"></span>
-<span style="left:65%; animation-duration:23s;"></span>
-<span style="left:70%; animation-duration:19s;"></span>
-<span style="left:75%; animation-duration:26s;"></span>
-<span style="left:80%; animation-duration:17s;"></span>
-<span style="left:85%; animation-duration:22s;"></span>
-<span style="left:90%; animation-duration:24s;"></span>
-<span style="left:95%; animation-duration:18s;"></span>
-
+<div class="galaxy" id="galaxy" aria-hidden="true"></div>
+<canvas id="space" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="bar t" aria-hidden="true"></div>
+<div class="bar b" aria-hidden="true"></div>
+<button class="skip" id="skip" type="button" hidden>Skip intro</button>
+<div class="gate" id="gate" aria-hidden="true">
+  <div class="sig-wrap">
+    <img class="sig" src="logo.webp" width="480" height="480" alt="" decoding="async" fetchpriority="high">
+    <span class="spark"></span>
+  </div>
 </div>
 
-        <span style="
-left:42%;
-width:4px;
-height:4px;
-animation-duration:35s;
-animation-delay:-8s;
-"></span>
-
-    <span style="left:10%; animation-duration:18s; animation-delay:-2s;"></span>
-
-    <span style="left:20%; animation-duration:25s; animation-delay:-8s;"></span>
-
-    <span style="left:35%; animation-duration:20s; animation-delay:-5s;"></span>
-
-    <span style="left:50%; animation-duration:28s; animation-delay:-10s;"></span>
-
-    <span style="left:65%; animation-duration:22s; animation-delay:-6s;"></span>
-
-    <span style="left:75%; animation-duration:30s; animation-delay:-12s;"></span>
-
-    <span style="left:90%; animation-duration:24s; animation-delay:-7s;"></span>
-    <span style="left:10%; --dx:40px; --dy:120px; animation-duration:18s;"></span>
-<span style="left:25%; --dx:-30px; --dy:180px; animation-duration:22s;"></span>
-<span style="left:40%; --dx:60px; --dy:200px; animation-duration:25s;"></span>
-<span style="left:55%; --dx:-50px; --dy:160px; animation-duration:20s;"></span>
-
-</div>
-
-    <!-- HERO SECTION -->
-
-    <section class="hero">
-
-        <h1>ZENON FICTIONAL UNIVERSE</h1>
-
-        <p>
-            Enter a universe of stories, cosmic wars,
-            mysterious worlds, legendary creatures,
-            and hidden archives created by K.G.ZENON.
-        </p>
-
-
-<div class="ai-scan-box">
-    ⚠ Note: Book covers shown are AI-generated visuals created to represent the story universe.
-</div>
-
-<style>
-.ai-scan-box{
-    margin: 20px auto 0;
-    padding: 12px 16px;
-    max-width: 600px;
-
-    border: 1px solid rgba(0,255,255,0.6);
-    border-radius: 10px;
-
-    background: transparent;
-
-    color: rgba(255,255,255,0.85);
-    font-size: 0.9rem;
-    line-height: 1.5;
-
-    text-shadow: 0 0 8px rgba(0,255,255,0.6);
-
-    position: relative;
-    overflow: hidden;
-
-    box-shadow:
-        0 0 10px rgba(0,255,255,0.25),
-        inset 0 0 10px rgba(0,255,255,0.15);
-
-    animation: flicker 3s infinite;
-}
-
-/* 🔵 SCANNING LIGHT SWEEP */
-.ai-scan-box::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-60%;
-    width:60%;
-    height:100%;
-
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(0,255,255,0.25),
-        transparent
-    );
-
-    transform: skewX(-20deg);
-
-    animation: scan 2.5s linear infinite;
-}
-
-/* ⚡ SCAN MOVEMENT */
-@keyframes scan{
-    0%{ left:-60%; }
-    100%{ left:120%; }
-}
-
-/* ⚡ LIGHT FLICKER */
-@keyframes flicker{
-    0%, 100%{ opacity:1; }
-    92%{ opacity:0.95; }
-    94%{ opacity:0.7; }
-    96%{ opacity:1; }
-}
-</style>
-
-
-<script>
-function openCharacters(){
-    window.location.href = "characters.html";
-}
-</script>
-
-<button onclick="window.location.href='characters.html'">
-CHARACTER SECTION
-</button>
-
-    </section>
-
-    <!-- BOOK SECTION -->
-
-    <section class="books-section">
-
-        <div class="container">
-
-            <!-- BOOK 1 -->
-
-            <div class="card">
-
-                <img src="kirax_book.webp">
-
-                <div class="card-content">
-
-                    <h3>Kirax 17: Beginning Of War</h3>
-
-                    <div class="buttons">
-
-                        <a href="kirax.html">
-                            <button>About This Book</button>
-                        </a>
-
-                        <a href="https://amzn.in/d/0gO6jtTd" target="_blank">
-                            <button>Buy on Amazon</button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- BOOK 2 -->
-
-            <div class="card">
-
-                <img src="strangers_book.webp">
-
-                <div class="card-content">
-
-                    <h3>A Stranger's Hope</h3>
-
-                    <div class="buttons">
-
-                        <a href="strangers.html">
-                            <button>About This Book</button>
-                        </a>
-
-                        <a href="https://amzn.in/d/01TLlP7d"target="_blank">
-
-                        <button>Buy on Amazon</button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- BOOK 3 -->
-
-            <div class="card">
-
-                <img src="lifechanger_book.webp">
-
-                <div class="card-content">
-
-                    <h3>The Life Changer</h3>
-
-                    <div class="buttons">
-
-                        <a href="lifechanger.html">
-                            <button>About This Book</button>
-                        </a>
-
-                        <a href="https://amzn.in/d/0fclPyNC"target="_blank">
-
-                        <button>Buy on Amazon</button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- BOOK 4 -->
-
-            <div class="card">
-
-                <img src="vedtoria.webp">
-
-                <div class="card-content">
-
-                    <h3>Vedtoria:The Fallen Planet</h3>
-
-                    <div class="buttons">
-
-                        <a href="vedtoria.html">
-                            <button>About This Book</button>
-                        </a>
-
-                        <a href="https://amzn.in/d/0ao8xke4"target="_blank">
-
-                        <button>Buy on Amazon</button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <img src="Razor_cover.webp">
-
-                <div class="card-content">
-
-                    <h3>Zara and the Lava Bird</h3>
-
-                    <div class="buttons">
-
-                        <a href="volcaris.html">
-                            <button>About This Book</button>
-                        </a>
-
-                        <a href="https://amzn.in/d/07BJ9spS"target="_blank">
-
-                        <button>Buy on Amazon</button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <img src="brootcover.webp">
-
-                <div class="card-content">
-
-                    <h3>Broot And The Temple wish</h3>
-
-                    <div class="buttons">
-
-                        <a href="broot.html">
-                            <button>About This Book</button>
-                        </a>
-
-                        <a href="https://amzn.in/d/0fhXiRqF"target="_blank">
-
-                        <button>Buy on Amazon</button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+<main>
+
+  <!-- INTRO SCENE + HERO -->
+  <section class="hero" id="top">
+    <p class="presents rv" style="--w:.5s;--d:1.2s">K.G.ZENON presents</p>
+
+    <h1 class="title">
+      <span class="sr-only">ZENON FICTIONAL UNIVERSE</span>
+      <span class="lockup" aria-hidden="true">
+        <span class="mono-wrap">
+          <svg class="ring" viewBox="0 0 200 200">
+            <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#37f0ff"/><stop offset="1" stop-color="#8a6bff"/></linearGradient></defs>
+            <circle class="r1" cx="100" cy="100" r="97" pathLength="100"/>
+            <circle class="r2" cx="100" cy="100" r="90" pathLength="100"/>
+          </svg>
+          <canvas class="mono" id="mono" width="10" height="5"></canvas>
+        </span>
+        <span class="t-main">
+          <span style="--i:0">Z</span><span style="--i:1">E</span><span style="--i:2">N</span><span style="--i:3">O</span><span style="--i:4">N</span>
+        </span>
+      </span>
+      <span class="flare" aria-hidden="true"></span>
+      <span class="t-sub" aria-hidden="true">FICTIONAL UNIVERSE</span>
+    </h1>
+
+    <p class="lead rv" style="--w:4s;--d:1s">
+      Enter a universe of stories, cosmic wars, mysterious worlds, legendary creatures,
+      and hidden archives created by <em>K.G.ZENON</em>.
+    </p>
+
+    <div class="cta rv" style="--w:4.3s;--d:1s">
+      <a class="btn primary" href="characters.html">Character section</a>
+      <a class="btn" href="#books">Explore the books</a>
+    </div>
+
+    <a class="cue rv" href="#books" aria-label="Scroll to the books" style="--w:4.9s;--d:1s"><span>SCROLL</span><i></i></a>
+  </section>
+
+  <!-- BOOKS -->
+  <section class="books" id="books" aria-labelledby="books-title">
+    <div class="sec-head">
+      <h2 id="books-title">Books by K.G.ZENON</h2>
+      <p class="notice">⚠ Note: Book covers shown are AI-generated visuals created to represent the story universe.</p>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="cover"><img src="kirax_book.webp" alt="Cover of Kirax 17: Beginning Of War" width="600" height="800" loading="lazy" decoding="async"></div>
+        <div class="card-body">
+          <h3>Kirax 17: Beginning Of War</h3>
+          <div class="actions">
+            <a class="btn" href="kirax.html">About this book</a>
+            <a class="btn buy" href="https://amzn.in/d/0gO6jtTd" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+          </div>
         </div>
+      </article>
 
-    </section>
+      <article class="card">
+        <div class="cover"><img src="strangers_book.webp" alt="Cover of A Stranger's Hope" width="600" height="800" loading="lazy" decoding="async"></div>
+        <div class="card-body">
+          <h3>A Stranger's Hope</h3>
+          <div class="actions">
+            <a class="btn" href="strangers.html">About this book</a>
+            <a class="btn buy" href="https://amzn.in/d/01TLlP7d" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+          </div>
+        </div>
+      </article>
 
+      <article class="card">
+        <div class="cover"><img src="lifechanger_book.webp" alt="Cover of The Life Changer" width="600" height="800" loading="lazy" decoding="async"></div>
+        <div class="card-body">
+          <h3>The Life Changer</h3>
+          <div class="actions">
+            <a class="btn" href="lifechanger.html">About this book</a>
+            <a class="btn buy" href="https://amzn.in/d/0fclPyNC" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="cover"><img src="vedtoria.webp" alt="Cover of Vedtoria: The Fallen Planet" width="600" height="800" loading="lazy" decoding="async"></div>
+        <div class="card-body">
+          <h3>Vedtoria: The Fallen Planet</h3>
+          <div class="actions">
+            <a class="btn" href="vedtoria.html">About this book</a>
+            <a class="btn buy" href="https://amzn.in/d/0ao8xke4" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="cover"><img src="Razor_cover.webp" alt="Cover of Zara and the Lava Bird" width="600" height="800" loading="lazy" decoding="async"></div>
+        <div class="card-body">
+          <h3>Zara and the Lava Bird</h3>
+          <div class="actions">
+            <a class="btn" href="volcaris.html">About this book</a>
+            <a class="btn buy" href="https://amzn.in/d/07BJ9spS" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="cover"><img src="brootcover.webp" alt="Cover of Broot And The Temple wish" width="600" height="800" loading="lazy" decoding="async"></div>
+        <div class="card-body">
+          <h3>Broot And The Temple wish</h3>
+          <div class="actions">
+            <a class="btn" href="broot.html">About this book</a>
+            <a class="btn buy" href="https://amzn.in/d/0fhXiRqF" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <img class="sig-mini" src="logo.webp" width="44" height="44" alt="K.G.Z logo" loading="lazy" decoding="async">
+  © K.G.ZENON · ZENON Fictional Universe
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+var root   = document.documentElement;
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var small  = matchMedia('(max-width:768px)').matches;
+var conn   = navigator.connection || {};
+var lite   = !!conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');   // Data Saver / very slow network
+
+/* Intro mode: full (first visit this session) · fast (returning) · skip (reduced motion) */
+var seen = false;
+try{ seen = sessionStorage.getItem('zenon-intro') === '1'; }catch(e){}
+var mode = reduce ? 'skip' : (seen ? 'fast' : 'full');
+root.style.setProperty('--k', mode === 'full' ? 1 : (mode === 'fast' ? 0.3 : 0));
+
+var flash = document.getElementById('flash');
+var scrim = document.getElementById('scrim');
+var skipBtn = document.getElementById('skip');
+var galaxy = document.getElementById('galaxy');
+var timers = [], began = false;
+
+/* ───────── STARFIELD (one canvas: warp jump → slow drift) ───────── */
+var canvas = document.getElementById('space');
+var ctx = canvas.getContext('2d');
+var W, H, DPR;
+var N = lite ? 55 : (small ? 100 : 190);
+var NP = lite ? 2 : (small ? 3 : 5);              // how many of those "stars" are really planets
+var WARP = 1.4, DRIFT = 0.012;
+var speed = mode === 'full' ? 0.02 : DRIFT;
+var target = DRIFT;                               // set to WARP when the entrance logo hands over to the jump
+var stars = [], raf = 0, last = 0;
+var mx = 0, my = 0, cx = 0, cy = 0;               // pointer parallax (desktop only)
+var sy = 0;                                       // scroll position (for parallax / dimming)
+var pa = reduce ? 1 : 0, paTarget = pa;           // fade-in amount for distant galaxies
+var comet = null, nextComet = 0, smudges = [], SPR = [];
+
+function rand(a, b){ return a + Math.random() * (b - a); }
+function seed(s, far){
+  if(s.pl) s.pl = 1 + ((Math.random() * 3) | 0);  // planets live in the same star field: a bit bigger, steady (they don't twinkle), tinted
+  s.z = far ? 1 : (s.pl ? rand(0.2, 0.55) : rand(0.08, 1));
+  s.x = rand(-1, 1) * s.z;
+  s.y = rand(-1, 1) * s.z;
+  s.tw = rand(0, 6.28);
+  s.warm = Math.random() < 0.12;
+  return s;
+}
+for(var i = 0; i < N; i++) stars.push(seed({pl: i < NP ? 1 : 0}, false));
+
+
+/* ───────── DEEP SPACE, AS SEEN WHILE TRAVELLING ─────────
+   From a ship, planets are just steady coloured points and galaxies are tiny faint smudges. Both are
+   painted once into 64px sprites (a few KB of memory) — no images, no per-frame cost worth measuring. */
+function mk(w, h){ var c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+
+var PCOL = ['170,205,255', '255,205,140', '255,160,140'];     // pale blue · amber · rose
+
+function h3(x, y, z){                                          // noise helpers (used for the K.G. stone texture)
+  var h = Math.imul(x, 374761393) ^ Math.imul(y, 668265263) ^ Math.imul(z, 1274126177);
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+}
+function n3(x, y, z){
+  var xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+  var xf = x - xi, yf = y - yi, zf = z - zi;
+  var u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf), w = zf * zf * (3 - 2 * zf);
+  var x1 = h3(xi, yi, zi),     x2 = h3(xi + 1, yi, zi),     x3 = h3(xi, yi + 1, zi),     x4 = h3(xi + 1, yi + 1, zi);
+  var z1 = h3(xi, yi, zi + 1), z2 = h3(xi + 1, yi, zi + 1), z3 = h3(xi, yi + 1, zi + 1), z4 = h3(xi + 1, yi + 1, zi + 1);
+  var a = x1 + (x2 - x1) * u, b = x3 + (x4 - x3) * u, c = z1 + (z2 - z1) * u, d = z3 + (z4 - z3) * u;
+  var e = a + (b - a) * v, f = c + (d - c) * v;
+  return e + (f - e) * w;
+}
+function fbm(x, y, z, o){
+  var s = 0, a = 0.5;
+  for(var i = 0; i < o; i++){ s += a * n3(x, y, z); x *= 2; y *= 2; z *= 2; a *= 0.5; }
+  return s / (1 - Math.pow(0.5, o));
+}
+
+function smudgeSprite(){                                       // a far-away galaxy: soft tilted ellipse, bright core
+  var s = mk(64, 64), g = s.getContext('2d'), warm = Math.random() < 0.5;
+  g.translate(32, 32); g.rotate(rand(0, 3.14)); g.scale(1, rand(0.28, 0.6));
+  var r = g.createRadialGradient(0, 0, 0, 0, 0, 30);
+  r.addColorStop(0, 'rgba(255,244,225,.95)'); r.addColorStop(0.12, 'rgba(255,226,190,.55)');
+  r.addColorStop(0.45, warm ? 'rgba(230,190,255,.16)' : 'rgba(170,200,255,.16)'); r.addColorStop(1, 'rgba(150,150,255,0)');
+  g.fillStyle = r; g.beginPath(); g.arc(0, 0, 30, 0, 6.2832); g.fill();
+  return s;
+}
+function buildSprites(){
+  SPR = PCOL.map(function(c){                                  // planet = white-hot core + soft tinted halo
+    var s = mk(64, 64), g = s.getContext('2d'), r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(0.09, 'rgba(255,255,255,.95)');
+    r.addColorStop(0.16, 'rgba(' + c + ',.55)'); r.addColorStop(0.4, 'rgba(' + c + ',.22)'); r.addColorStop(1, 'rgba(' + c + ',0)');
+    g.fillStyle = r; g.fillRect(0, 0, 64, 64);
+    return s;
+  });
+  smudges = [];
+  if(lite) return;
+  for(var i = 0, n = small ? 3 : 5; i < n; i++)
+    smudges.push({ x: rand(0.05, 0.95), y: rand(0.06, 0.94), w: rand(16, 34) * DPR, spr: smudgeSprite(), depth: rand(0.002, 0.006) });
+}
+function drawSmudges(t){
+  if(pa < 0.01) return;
+  ctx.globalAlpha = 0.5 * pa;
+  for(var i = 0; i < smudges.length; i++){
+    var m = smudges[i];
+    var x = m.x * W - cx * W * m.depth, y = m.y * H - cy * H * m.depth - sy * DPR * m.depth * 2;
+    ctx.drawImage(m.spr, x - m.w / 2, y - m.w / 2, m.w, m.w);
+  }
+  ctx.globalAlpha = 1;
+}
+
+function drawComet(t, dt){
+  if(!comet){
+    if(t > nextComet && speed < 0.05 && pa > 0.5){
+      var dir = Math.random() < 0.5 ? 1 : -1, ang = rand(0.35, 0.65), sp = (small ? 520 : 760) * DPR;
+      comet = { x: (dir > 0 ? rand(-0.1, 0.5) : rand(0.5, 1.1)) * W, y: rand(-0.05, 0.4) * H,
+                vx: Math.cos(ang) * sp * dir, vy: Math.sin(ang) * sp, age: 0, life: rand(1.1, 1.7), len: rand(110, 190) * DPR };
+      nextComet = t + rand(6000, 12000);
+    }
+    return;
+  }
+  comet.age += dt; comet.x += comet.vx * dt; comet.y += comet.vy * dt;
+  var k = comet.age / comet.life;
+  if(k >= 1){ comet = null; return; }
+  var a = Math.sin(k * Math.PI), mag = Math.sqrt(comet.vx * comet.vx + comet.vy * comet.vy);
+  var tx = comet.x - comet.vx / mag * comet.len, ty = comet.y - comet.vy / mag * comet.len;
+  var gr = ctx.createLinearGradient(comet.x, comet.y, tx, ty);
+  gr.addColorStop(0, 'rgba(255,255,255,' + a + ')');
+  gr.addColorStop(0.3, 'rgba(120,220,255,' + a * 0.45 + ')');
+  gr.addColorStop(1, 'rgba(120,220,255,0)');
+  ctx.strokeStyle = gr; ctx.lineWidth = 1.8 * DPR;
+  ctx.beginPath(); ctx.moveTo(comet.x, comet.y); ctx.lineTo(tx, ty); ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,' + a + ')';
+  ctx.beginPath(); ctx.arc(comet.x, comet.y, 1.6 * DPR, 0, 6.2832); ctx.fill();
+}
+
+function fit(){
+  DPR = Math.min(window.devicePixelRatio || 1, small ? 1.25 : 1.5);
+  W = canvas.width  = Math.round(innerWidth  * DPR);
+  H = canvas.height = Math.round(innerHeight * DPR);
+  ctx.lineCap = 'round';
+}
+fit();
+buildSprites();
+
+/* Ignore mobile address-bar resizes; only refit on real size changes */
+var rw = innerWidth, rh = innerHeight, rt;
+addEventListener('scroll', function(){ sy = window.scrollY || 0; scrim.style.opacity = Math.min(0.5, sy / innerHeight * 0.55); }, {passive:true});
+addEventListener('resize', function(){
+  clearTimeout(rt);
+  rt = setTimeout(function(){
+    if(innerWidth !== rw || Math.abs(innerHeight - rh) > 140){
+      rw = innerWidth; rh = innerHeight; fit(); buildSprites(); if(fontsOk){ try{ paintMono(); }catch(e){} }
+      if(!raf) draw(0, 0);
+    }
+  }, 200);
+});
+
+if(!reduce && !lite && matchMedia('(hover:hover) and (pointer:fine)').matches){
+  addEventListener('pointermove', function(e){
+    mx = e.clientX / innerWidth - 0.5;
+    my = e.clientY / innerHeight - 0.5;
+  }, {passive:true});
+}
+
+function draw(t, dt){
+  ctx.clearRect(0, 0, W, H);
+  var ox = W / 2 + cx * W * 0.025, oy = H / 2 + cy * H * 0.025;
+  var hw = W / 2, hh = H / 2;
+  var warping = speed > 0.03;
+  drawSmudges(t);
+
+  for(var i = 0; i < N; i++){
+    var s = stars[i];
+    s.z -= speed * dt;
+    var sx = ox + s.x / s.z * hw, sy = oy + s.y / s.z * hh;
+    if(s.z < 0.06 || sx < -40 || sx > W + 40 || sy < -40 || sy > H + 40){ seed(s, true); continue; }
+
+    var a = (1 - s.z) * 2; if(a > 1) a = 1;
+    var size = (0.5 + (1 - s.z) * 1.7) * DPR;
+    var col = s.warm ? '255,214,160' : '215,238,255';
+    if(s.pl){ col = PCOL[s.pl - 1]; a = Math.min(1, 0.35 + (1 - s.z) * 1.2) * Math.min(1, (1 - s.z) * 6); size = (1.5 + (1 - s.z) * 1.6) * DPR; }
+
+    if(warping){
+      var z2 = s.z + speed * 0.07;
+      var x2 = ox + s.x / z2 * hw, y2 = oy + s.y / z2 * hh;
+      var dx = sx - x2, dy = sy - y2;
+      if(dx * dx + dy * dy > 2.5){
+        ctx.globalAlpha = a;
+        ctx.strokeStyle = 'rgb(' + col + ')';
+        ctx.lineWidth = size;
+        ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(sx, sy); ctx.stroke();
+        continue;
+      }
+    }
+    if(s.pl){ var d = size * 7; ctx.globalAlpha = a; ctx.drawImage(SPR[s.pl - 1], sx - d / 2, sy - d / 2, d, d); continue; }
+    ctx.globalAlpha = a * (0.7 + 0.3 * Math.sin(t * 0.0018 + s.tw));
+    ctx.fillStyle = 'rgb(' + col + ')';
+    if(size < 1.4) ctx.fillRect(sx - size / 2, sy - size / 2, size, size);
+    else { ctx.beginPath(); ctx.arc(sx, sy, size / 2, 0, 6.2832); ctx.fill(); }
+  }
+  ctx.globalAlpha = 1;
+  if(!lite && !reduce) drawComet(t, dt);
+}
+
+function frame(t){
+  raf = requestAnimationFrame(frame);
+  var gap = speed > 0.25 ? 0 : (sy > innerHeight ? 66 : (small ? 42 : 32));   // full rate in warp, ~24–30fps when drifting
+  if(t - last < gap) return;
+  var dt = Math.min((t - last) / 1000, 0.05); last = t;
+  speed += (target - speed) * (1 - Math.exp(-dt * (target > speed ? 2.2 : 2.6)));
+  pa += (paTarget - pa) * (1 - Math.exp(-dt * 0.9));
+  cx += (mx - cx) * 0.06; cy += (my - cy) * 0.06;
+  draw(t, dt);
+}
+function startLoop(){
+  if(reduce || raf) return;
+  last = performance.now();
+  raf = requestAnimationFrame(frame);
+}
+document.addEventListener('visibilitychange', function(){
+  if(document.hidden){ cancelAnimationFrame(raf); raf = 0; }
+  else startLoop();
+});
+
+
+/* ───────── K.G. STONE SLAB (painted once: gradient + noise + cracks + rim light) ───────── */
+function paintMono(){
+  var cv = document.getElementById('mono');
+  var cssW = cv.parentNode.clientWidth || 360;
+  var dpr = Math.min(window.devicePixelRatio || 1, small ? 1.25 : 1.5);
+  var portrait = innerHeight > innerWidth;
+  var cw = Math.min(Math.round(cssW * dpr), 1500), ch = Math.round(cw * (portrait ? 0.6 : 0.46));
+  cv.width = cw; cv.height = ch;
+  var g = cv.getContext('2d'), fam = '"Orbitron","Segoe UI",system-ui,sans-serif', txt = 'K.G.';
+  g.font = '900 100px ' + fam;
+  var F = Math.min(100 * (cw * (portrait ? 0.9 : 0.72)) / g.measureText(txt).width, portrait ? ch * 0.5 / 0.72 : ch * 1.05);
+  g.font = '900 ' + F + 'px ' + fam; g.textAlign = 'center'; g.textBaseline = 'middle';
+  var mx0 = cw / 2, my0 = ch * 0.53;
+
+  g.save(); g.shadowColor = 'rgba(90,110,255,.9)'; g.shadowBlur = 44 * dpr;      // cold bloom around the slab
+  g.fillStyle = 'rgba(60,70,190,.55)'; g.fillText(txt, mx0, my0); g.restore();
+
+  var sg = g.createLinearGradient(0, my0 - F * 0.4, 0, my0 + F * 0.4);           // stone body
+  sg.addColorStop(0, '#2b3874'); sg.addColorStop(0.5, '#151d4b'); sg.addColorStop(1, '#080c27');
+  g.fillStyle = sg; g.fillText(txt, mx0, my0);
+
+  g.globalCompositeOperation = 'source-atop';                                     // everything below stays inside the letters
+  var nw = Math.ceil(cw / 4), nh = Math.ceil(ch / 4), nc = mk(nw, nh), ng = nc.getContext('2d');
+  var im = ng.createImageData(nw, nh), q = im.data, sd = rand(0, 100);
+  for(var y = 0; y < nh; y++) for(var x = 0; x < nw; x++){
+    var v = fbm(x / nw * 5 + sd, y / nh * 2.2, sd * 0.3, 4), o = (y * nw + x) * 4;
+    if(v < 0.5){ q[o] = 2; q[o + 1] = 4; q[o + 2] = 18; q[o + 3] = Math.min(255, (0.5 - v) * 2.6 * 255); }
+    else       { q[o] = 150; q[o + 1] = 170; q[o + 2] = 255; q[o + 3] = Math.min(255, (v - 0.5) * 1.1 * 255); }
+  }
+  ng.putImageData(im, 0, 0); g.imageSmoothingEnabled = true; g.drawImage(nc, 0, 0, cw, ch);
+
+  g.lineCap = 'round'; g.lineJoin = 'round';
+  function crack(x, y, a, len, w, dp){
+    var pts = [[x, y]], steps = Math.max(3, Math.floor(len / 11));
+    for(var i = 0; i < steps; i++){
+      a += rand(-0.55, 0.55); x += Math.cos(a) * rand(8, 17) * dpr; y += Math.sin(a) * rand(8, 17) * dpr; pts.push([x, y]);
+      if(dp > 0 && Math.random() < 0.13) crack(x, y, a + rand(-1.1, 1.1), len * 0.5, w * 0.7, dp - 1);
+    }
+    g.beginPath(); g.moveTo(pts[0][0], pts[0][1]); for(var j = 1; j < pts.length; j++) g.lineTo(pts[j][0], pts[j][1]);
+    g.strokeStyle = 'rgba(2,4,20,.9)'; g.lineWidth = w; g.stroke();
+    g.beginPath(); g.moveTo(pts[0][0] + dpr, pts[0][1] + dpr); for(j = 1; j < pts.length; j++) g.lineTo(pts[j][0] + dpr, pts[j][1] + dpr);
+    g.strokeStyle = 'rgba(130,160,255,.4)'; g.lineWidth = Math.max(1, w * 0.45); g.stroke();   // lit chip edge
+  }
+  for(var c = 0; c < 10; c++) crack(cw * rand(0.2, 0.8), ch * rand(0.25, 0.75), rand(0, 6.283), F * rand(0.5, 1.0), Math.max(1.2, dpr * 1.7), 2);
+  g.globalCompositeOperation = 'source-over';
+
+  var rg = g.createLinearGradient(cw * 0.2, ch * 0.1, cw * 0.8, ch * 0.9);        // rim light on the edges
+  rg.addColorStop(0, 'rgba(190,205,255,.95)'); rg.addColorStop(0.5, 'rgba(110,120,255,.65)'); rg.addColorStop(1, 'rgba(70,50,190,.5)');
+  g.lineWidth = Math.max(1.5, dpr * 2.2); g.strokeStyle = rg; g.strokeText(txt, mx0, my0);
+}
+
+/* ───────── INTRO SEQUENCE ─────────
+   1) K.G.Z signature appears (the "entrance")   2) hyperspace jump   3) K.G. slab + ZENON land */
+var GATE = 2200;
+var gate = document.getElementById('gate');
+var fontsOk = false, gateDone = false, launched = false;
+
+function drop(){ target = DRIFT; paTarget = 1; flash.classList.add('pop'); }
+function finish(){ root.classList.remove('lock'); skipBtn.hidden = true; }
+function launch(){
+  if(launched) return; launched = true;
+  root.classList.add('go');
+  if(mode === 'full'){
+    target = WARP;
+    timers.push(setTimeout(drop, 1700));     // jump out of warp + flash, title lands
+    timers.push(setTimeout(finish, 4900));   // unlock scrolling
+  } else paTarget = 1;
+}
+function tryLaunch(){ if(fontsOk && gateDone) launch(); }
+function skip(){
+  timers.forEach(clearTimeout);
+  root.style.setProperty('--k', 0);
+  target = DRIFT; paTarget = 1;
+  gate.hidden = true; finish();
+  if(!launched){ try{ paintMono(); }catch(e){} launch(); }
+}
+skipBtn.addEventListener('click', skip);
+
+try{ sessionStorage.setItem('zenon-intro', '1'); }catch(e){}
+if(mode === 'full'){
+  root.classList.add('lock', 'gate-on');
+  skipBtn.hidden = false;
+  timers.push(setTimeout(function(){ gateDone = true; tryLaunch(); }, GATE));
+  timers.push(setTimeout(function(){ gate.hidden = true; }, GATE + 1400));
+} else { gate.hidden = true; gateDone = true; }
+if(reduce) draw(0, 0); else startLoop();
+
+/* Wait (max 1.4s) for the title font so the slab + letters never appear in a fallback font.
+   The logo entrance plays meanwhile, so this wait is invisible. */
+var fontWait = (document.fonts && document.fonts.load)
+  ? Promise.race([document.fonts.load('900 1em Orbitron', 'ZENON'), new Promise(function(r){ setTimeout(r, 1400); })])
+  : Promise.resolve();
+function fontsReady(){ try{ paintMono(); }catch(e){} fontsOk = true; tryLaunch(); }
+fontWait.then(fontsReady, fontsReady);
+
+/* ───────── BACKGROUND IMAGE (right size for the device, skipped on Data Saver) ───────── */
+function loadGalaxy(){
+  if(lite) return;
+  var src = innerHeight > innerWidth ? 'galaxy-9x16.webp' : 'galaxy-16x9.webp';
+  var im = new Image();
+  im.decoding = 'async';
+  im.onerror = function(){ console.warn('ZENON: could not load ' + src + ' — check the file name/path'); };
+  im.onload = function(){ galaxy.style.backgroundImage = 'url(' + src + ')'; galaxy.classList.add('on'); };
+  im.src = src;
+}
+loadGalaxy();
+
+})();
+</script>
 </body>
-
 </html>
