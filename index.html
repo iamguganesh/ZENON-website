@@ -64,6 +64,10 @@ body{
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ───────── BACKGROUND (3 cheap fixed layers, no filters) ───────── */
+/* Milky-Way band: painted ONCE at low resolution and smoothly stretched by the browser (nothing redrawn per frame) */
+.band{position:fixed;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none;transform:scale(1.06)}
+.js:not(.go) .band{opacity:0}
+.go .band{animation:fadeIn calc(3s*var(--k)) ease calc(1.7s*var(--k)) both}
 #space{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
 .vignette{
   position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -319,6 +323,7 @@ footer{position:relative;z-index:1;text-align:center;color:var(--muted);font-siz
 
 <body>
 
+<canvas id="band" class="band" aria-hidden="true"></canvas>
 <canvas id="space" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
 <div class="scrim" id="scrim" aria-hidden="true"></div>
@@ -474,6 +479,7 @@ root.style.setProperty('--k', mode === 'full' ? 1 : (mode === 'fast' ? 0.3 : 0))
 
 var flash = document.getElementById('flash');
 var scrim = document.getElementById('scrim');
+var bandEl = document.getElementById('band');
 var skipBtn = document.getElementById('skip');
 var timers = [], began = false;
 
@@ -486,6 +492,18 @@ var NP = lite ? 2 : (small ? 3 : 5);              // how many of those "stars" a
 var WARP = 1.4, DRIFT = 0.012;
 var speed = mode === 'full' ? 0.02 : DRIFT;
 var target = DRIFT;                               // set to WARP when the entrance logo hands over to the jump
+function bandGeom(){                                          // where the Milky-Way band runs (tilted, off-centre)
+  return innerHeight > innerWidth ? {th: -0.95, v0: 0.08, sg: 0.10} : {th: -0.42, v0: 0.16, sg: 0.13};
+}
+var BG = bandGeom();
+function bandPoint(s){                                         // a random on-screen point close to the band's centre line
+  var asp = innerWidth / innerHeight, m = Math.tan(BG.th) * asp, sgn = 2 * BG.sg / Math.abs(Math.cos(BG.th));
+  for(var k = 0; k < 6; k++){
+    var xn = rand(-1, 1), yn = m * xn + 2 * BG.v0 + (Math.random() + Math.random() + Math.random() - 1.5) * 2 * sgn;
+    if(yn > -1 && yn < 1){ s.bx = xn; s.by = yn; return true; }
+  }
+  return false;
+}
 var stars = [], raf = 0, last = 0;
 var mx = 0, my = 0, cx = 0, cy = 0;               // pointer parallax (desktop only)
 var sy = 0;                                       // scroll position (for parallax / dimming)
@@ -496,8 +514,8 @@ function rand(a, b){ return a + Math.random() * (b - a); }
 function seed(s, far){
   if(s.pl) s.pl = 1 + ((Math.random() * 3) | 0);  // planets live in the same star field: a bit bigger, steady (they don't twinkle), tinted
   s.z = far ? 1 : (s.pl ? rand(0.2, 0.55) : rand(0.08, 1));
-  s.x = rand(-1, 1) * s.z;
-  s.y = rand(-1, 1) * s.z;
+  if(!s.pl && Math.random() < 0.4 && bandPoint(s)){ s.x = s.bx * s.z; s.y = s.by * s.z; }   // ~40% of stars cluster along the band
+  else { s.x = rand(-1, 1) * s.z; s.y = rand(-1, 1) * s.z; }
   s.tw = rand(0, 6.28);
   s.warm = Math.random() < 0.12;
   return s;
@@ -550,11 +568,41 @@ function buildSprites(){
     g.fillStyle = r; g.fillRect(0, 0, 64, 64);
     return s;
   });
+  buildMotes();
   smudges = [];
   if(lite) return;
   for(var i = 0, n = small ? 3 : 5; i < n; i++)
     smudges.push({ x: rand(0.05, 0.95), y: rand(0.06, 0.94), w: rand(16, 34) * DPR, spr: smudgeSprite(), depth: rand(0.002, 0.006) });
 }
+
+var motes = [], MSPR = [];
+function buildMotes(){                                          // out-of-focus specks close to the camera → real sense of depth
+  motes = [];
+  if(lite) return;
+  MSPR = ['150,175,255', '255,196,150'].map(function(c){
+    var s = mk(96, 96), g = s.getContext('2d'), r = g.createRadialGradient(48, 48, 0, 48, 48, 48);
+    r.addColorStop(0, 'rgba(' + c + ',.55)'); r.addColorStop(0.72, 'rgba(' + c + ',.7)'); r.addColorStop(0.9, 'rgba(' + c + ',1)'); r.addColorStop(1, 'rgba(' + c + ',0)');
+    g.fillStyle = r; g.fillRect(0, 0, 96, 96);
+    return s;
+  });
+  for(var i = 0, n = small ? 4 : 7; i < n; i++)
+    motes.push({ x: rand(0, 1), y: rand(0, 1), vx: rand(-0.006, 0.006), vy: rand(-0.004, 0.004), r: rand(18, 56) * DPR, a: rand(0.035, 0.08), d: rand(0.03, 0.09), c: i % 2 });
+}
+function drawMotes(dt){
+  if(!motes.length || pa < 0.01) return;
+  var f = pa * Math.max(0, 1 - speed * 5);                     // hidden while warping
+  if(f < 0.01) return;
+  for(var i = 0; i < motes.length; i++){
+    var m = motes[i];
+    m.x += m.vx * dt; m.y += m.vy * dt;
+    if(m.x < -0.1) m.x = 1.1; else if(m.x > 1.1) m.x = -0.1;
+    if(m.y < -0.1) m.y = 1.1; else if(m.y > 1.1) m.y = -0.1;
+    ctx.globalAlpha = m.a * f;
+    ctx.drawImage(MSPR[m.c], m.x * W - cx * W * m.d - m.r, m.y * H - cy * H * m.d - sy * DPR * m.d * 4 - m.r, m.r * 2, m.r * 2);
+  }
+  ctx.globalAlpha = 1;
+}
+
 function drawSmudges(t){
   if(pa < 0.01) return;
   ctx.globalAlpha = 0.5 * pa;
@@ -599,15 +647,16 @@ function fit(){
 }
 fit();
 buildSprites();
+paintBand();
 
 /* Ignore mobile address-bar resizes; only refit on real size changes */
 var rw = innerWidth, rh = innerHeight, rt;
-addEventListener('scroll', function(){ sy = window.scrollY || 0; scrim.style.opacity = Math.min(0.5, sy / innerHeight * 0.55); }, {passive:true});
+addEventListener('scroll', function(){ sy = window.scrollY || 0; scrim.style.opacity = Math.min(0.5, sy / innerHeight * 0.55); bandEl.style.transform = 'translate3d(0,' + (-Math.min(sy * 0.05, innerHeight * 0.025)) + 'px,0) scale(1.06)'; }, {passive:true});
 addEventListener('resize', function(){
   clearTimeout(rt);
   rt = setTimeout(function(){
     if(innerWidth !== rw || Math.abs(innerHeight - rh) > 140){
-      rw = innerWidth; rh = innerHeight; fit(); buildSprites(); if(fontsOk){ try{ paintMono(); }catch(e){} }
+      rw = innerWidth; rh = innerHeight; BG = bandGeom(); fit(); buildSprites(); paintBand(); if(fontsOk){ try{ paintMono(); }catch(e){} }
       if(!raf) draw(0, 0);
     }
   }, 200);
@@ -657,6 +706,7 @@ function draw(t, dt){
     else { ctx.beginPath(); ctx.arc(sx, sy, size / 2, 0, 6.2832); ctx.fill(); }
   }
   ctx.globalAlpha = 1;
+  drawMotes(dt);
   if(!lite && !reduce) drawComet(t, dt);
 }
 
@@ -680,6 +730,32 @@ document.addEventListener('visibilitychange', function(){
   else startLoop();
 });
 
+
+
+/* ───────── MILKY-WAY BAND (painted once: soft cloud + dark dust lane + warm core) ───────── */
+function paintBand(){
+  var cv = document.getElementById('band');
+  var asp = innerWidth / innerHeight;
+  var RW = Math.max(48, Math.round(innerWidth / 6)), RH = Math.max(48, Math.round(innerHeight / 6));
+  cv.width = RW; cv.height = RH;
+  var g = cv.getContext('2d'), im = g.createImageData(RW, RH), q = im.data;
+  var c = Math.cos(BG.th), s = Math.sin(BG.th), sd = rand(0, 100);
+  for(var y = 0; y < RH; y++) for(var x = 0; x < RW; x++){
+    var xn = (x / RW - 0.5) * asp, yn = y / RH - 0.5 - BG.v0;
+    var u = xn * c + yn * s, v = -xn * s + yn * c;
+    var prof = Math.exp(-(v * v) / (2 * BG.sg * BG.sg));
+    if(prof < 0.01) continue;
+    var along = 0.55 + 0.45 * Math.exp(-(u * u) / 0.18);                       // brighter toward the "galactic core"
+    var dens = prof * along * (0.25 + 1.5 * fbm(u * 3 + sd, v * 6, sd * 0.3, 4));
+    var lane = Math.exp(-((v - 0.015) * (v - 0.015)) / 0.0008) * (0.4 + fbm(u * 9 + sd, v * 20, 3, 3));   // dark rift through the middle
+    dens *= Math.max(0, 1 - lane * 0.85);
+    var w = Math.min(1, along * prof * 1.2); w *= w;
+    var o = (y * RW + x) * 4;
+    q[o] = 110 + 145 * w; q[o + 1] = 120 + 90 * w; q[o + 2] = 255 - 90 * w;   // violet-blue, warming to amber at the core
+    q[o + 3] = Math.min(255, dens * 0.26 * 255);
+  }
+  g.putImageData(im, 0, 0);
+}
 
 /* ───────── K.G. STONE SLAB (painted once: gradient + noise + cracks + rim light) ───────── */
 function paintMono(){
