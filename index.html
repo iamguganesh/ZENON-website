@@ -693,7 +693,7 @@ function paintMono(){
   var portrait = innerHeight > innerWidth;
   var cw = Math.min(Math.round(cssW * dpr), 1500), ch = Math.round(cw * (portrait ? 0.6 : 0.46));
   cv.width = cw; cv.height = ch;
-  var g = cv.getContext('2d'), fam = '"Orbitron","Segoe UI",system-ui,sans-serif', txt = 'K.G.';
+  var g = cv.getContext('2d'), fam = '"Orbitron","Segoe UI",system-ui,sans-serif', txt = 'K.G';
   g.font = '900 100px ' + fam;
   var F = Math.min(100 * (cw * (portrait ? 0.9 : 0.72)) / g.measureText(txt).width, portrait ? ch * 0.5 / 0.72 : ch * 1.05);
   g.font = '900 ' + F + 'px ' + fam; g.textAlign = 'center'; g.textBaseline = 'middle';
