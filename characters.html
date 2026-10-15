@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#03040c">
 <title>NOVAZONE ARCHIVE | ZENON Fictional Universe</title>
-<meta name="description" content="The NOVAZONE archive: characters, ships, planets and armies of the ZENON fictional universe by K.G.ZENON.">
+<meta name="description" content="The NOVAZONE and DRAGON WORLD archives: characters, ships, planets, dragons and armies of the ZENON fictional universe by K.G.ZENON.">
 <meta name="author" content="K.G.ZENON">
 <link rel="icon" type="image/webp" href="favicon.webp">
 <link rel="apple-touch-icon" href="favicon.png">
@@ -40,13 +40,19 @@ button,input{font:inherit;color:inherit}
 #space{position:fixed;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none}
 .glows i{position:fixed;inset:0;z-index:-2;opacity:0;pointer-events:none;transition:opacity 1.1s ease}
 [data-world="all"] .g-all,[data-world="kirax"] .g-kirax,[data-world="vedtoria"] .g-vedtoria,
-[data-world="warship"] .g-warship,[data-world="monster"] .g-monster,[data-world="beyond"] .g-beyond{opacity:1}
+[data-world="warship"] .g-warship,[data-world="monster"] .g-monster,[data-world="beyond"] .g-beyond,
+.glows i.on{opacity:1}
 .g-all{background:radial-gradient(55% 40% at 18% 8%,rgba(90,130,255,.20),transparent 70%),radial-gradient(45% 40% at 88% 22%,rgba(150,90,255,.17),transparent 70%),radial-gradient(60% 45% at 50% 100%,rgba(0,190,255,.10),transparent 70%)}
 .g-kirax{background:radial-gradient(60% 45% at 20% 10%,rgba(55,240,255,.21),transparent 70%),radial-gradient(50% 45% at 85% 30%,rgba(40,110,255,.16),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(0,150,255,.11),transparent 70%)}
 .g-vedtoria{background:radial-gradient(60% 45% at 20% 10%,rgba(61,255,160,.19),transparent 70%),radial-gradient(50% 45% at 85% 30%,rgba(20,170,120,.16),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(160,255,110,.08),transparent 70%)}
 .g-warship{background:radial-gradient(60% 45% at 20% 10%,rgba(255,77,94,.20),transparent 70%),radial-gradient(50% 45% at 85% 30%,rgba(255,120,40,.13),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(190,30,60,.12),transparent 70%)}
 .g-monster{background:radial-gradient(60% 45% at 20% 10%,rgba(255,176,46,.20),transparent 70%),radial-gradient(50% 45% at 85% 30%,rgba(255,90,30,.14),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(200,110,0,.10),transparent 70%)}
 .g-beyond{background:radial-gradient(60% 45% at 20% 10%,rgba(165,139,255,.21),transparent 70%),radial-gradient(50% 45% at 85% 30%,rgba(90,60,220,.16),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(120,80,255,.11),transparent 70%)}
+/* Dragon World glows: one rule, colour comes from --gc on each element */
+.g-d{
+  background:radial-gradient(60% 45% at 20% 10%,rgba(255,255,255,.12),transparent 70%),radial-gradient(50% 45% at 85% 30%,rgba(255,255,255,.08),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(255,255,255,.07),transparent 70%);
+  background:radial-gradient(60% 45% at 20% 10%,color-mix(in srgb,var(--gc) 21%,transparent),transparent 70%),radial-gradient(50% 45% at 85% 30%,color-mix(in srgb,var(--gc) 15%,transparent),transparent 70%),radial-gradient(60% 40% at 50% 100%,color-mix(in srgb,var(--gc) 11%,transparent),transparent 70%);
+}
 .vig{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%,transparent 50%,rgba(0,0,8,.72) 100%)}
 
 /* deep-space depth: a Milky-Way band tinted by the current world, and the world's horizon below you */
@@ -123,6 +129,11 @@ h1{
   position:relative;max-width:640px;margin:18px auto 0;padding:10px 14px;border-radius:10px;
   border:1px solid rgba(255,255,255,.16);background:rgba(3,4,12,.55);color:#b9c8e2;font-size:.82rem;line-height:1.5;
 }
+
+/* universe switcher (NOVAZONE / DRAGON WORLD) */
+.unis{position:relative;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px auto 0}
+.unis .chip{min-height:44px;padding:0 22px;font-size:.74rem;letter-spacing:.14em}
+.unis .chip .orb{width:14px;height:14px}
 
 /* ───────── TOOLS ───────── */
 .tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;max-width:1500px;margin:22px auto 0;padding:0 18px}
@@ -259,6 +270,7 @@ h1{
 @media (max-width:640px){
   .back-btn .lbl{display:none}
   .back-btn{padding:0 13px}
+  .unis .chip{padding:0 16px;font-size:.66rem}
   .grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:4px 10px 60px}
   .cap{left:11px;right:11px;bottom:11px}.cap h3{font-size:.74rem}
   .back{padding:13px 11px 9px;gap:7px}.back h4{font-size:.8rem}.row{font-size:.72rem;line-height:1.4}.row b{margin-bottom:4px}.chips{gap:4px}.chips li{font-size:.6rem;padding:3px 7px}
@@ -276,7 +288,17 @@ h1{
 
 <canvas id="band" class="band" aria-hidden="true"></canvas><canvas id="band2" class="band" aria-hidden="true"></canvas>
 <canvas id="space" aria-hidden="true"></canvas>
-<div class="glows" aria-hidden="true"><i class="g-all"></i><i class="g-kirax"></i><i class="g-vedtoria"></i><i class="g-warship"></i><i class="g-monster"></i><i class="g-beyond"></i></div>
+<div class="glows" aria-hidden="true">
+  <i class="g-all"></i><i class="g-kirax"></i><i class="g-vedtoria"></i><i class="g-warship"></i><i class="g-monster"></i><i class="g-beyond"></i>
+  <!-- Dragon World -->
+  <i class="g-d" data-k="dall" style="--gc:#ffd36a"></i>
+  <i class="g-d" data-k="realm" style="--gc:#e07bff"></i>
+  <i class="g-d" data-k="wind" style="--gc:#7ee8d0"></i>
+  <i class="g-d" data-k="volcanic" style="--gc:#ff6a2e"></i>
+  <i class="g-d" data-k="river" style="--gc:#3aa8ff"></i>
+  <i class="g-d" data-k="deepsea" style="--gc:#6b7bff"></i>
+  <i class="g-d" data-k="ice" style="--gc:#bfeaff"></i>
+</div>
 <div class="vig" aria-hidden="true"></div>
 <div class="horizon" aria-hidden="true"></div>
 
@@ -288,9 +310,13 @@ h1{
 <header class="hero">
   <div class="orbits paused" id="orbits" aria-hidden="true"><i class="ring r1"></i><i class="ring r2"></i><i class="ring r3"></i></div>
   <img class="logo" src="logo.webp" width="56" height="56" alt="K.G.Z">
-  <h1>NOVAZONE ARCHIVE</h1>
-  <p class="sub">Characters, ships, armies and worlds from the cosmic universe of K.G.ZENON.</p>
+  <h1 id="title">NOVAZONE ARCHIVE</h1>
+  <p class="sub" id="sub">Characters, ships, armies and worlds from the cosmic universe of K.G.ZENON.</p>
   <p class="notice">⚠ Images shown are AI-generated visuals created to represent the characters, ships, and environments.</p>
+  <div class="unis" id="unis" role="group" aria-label="Choose a universe">
+    <button type="button" class="chip" data-u="novazone" style="--c:#8fdcff" aria-pressed="true"><i class="orb"></i>NOVAZONE</button>
+    <button type="button" class="chip" data-u="dragonworld" style="--c:#ffd36a" aria-pressed="false"><i class="orb"></i>DRAGON WORLD</button>
+  </div>
 </header>
 
 <div class="tools">
@@ -320,7 +346,7 @@ h1{
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════
-   YOUR ARCHIVE — add / edit characters here (same format as before)
+   UNIVERSE 1 — NOVAZONE  (add / edit characters here, same format as before)
    Optional: add   world:"kirax"   to force an entry into a world.
    Worlds: kirax · vedtoria · warship · monster · beyond
    ═══════════════════════════════════════════════════════════════════ */
@@ -525,8 +551,6 @@ type:"characters"
     zone:"Vedtoria planet",
     type:"other"
 },
-
-
 {
     images:[
         "zone1.webp",
@@ -616,16 +640,100 @@ type:"characters"
 }
 ];
 
-/* ═══════════════════════ WORLDS (colour-coding of the universe) ═══════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   UNIVERSE 2 — DRAGON WORLD  (add / edit dragons here)
+   Same format. "birthbiome" decides which biome the dragon belongs to
+   (wind · volcano · river · ocean · ice). Entries without a birthbiome
+   (like "Dragon World" itself) go to the DRAGON WORLD realm.
+   Optional: add   world:"wind"   to force an entry into a biome.
+   ═══════════════════════════════════════════════════════════════════ */
+const dragonzone = [
+{
+  images:[
+      "world1.webp",
+      "world2.webp",
+      "world3.webp",
+      "world4.webp",
+      "world5.webp",
+      "world6.webp",
+      "world7.webp",
+      "world8.webp",
+      "world9.webp",
+      "world10.webp"
+  ],
+  name:"Dragon World",
+  role:"Home of dragons",
+},
+{
+  images:[
+    "wind_dragon.webp",
+    "Wind_dragon2.webp",
+    "Wind_baby.webp"
+  ],
+  name:"Wind Dragon",
+  power:"splash wind to attack",
+  birthbiome:"wind biome",
+},
+{
+  images:[
+    "volcanic_dragon.webp",
+    "Volcanic_dragon2.webp"
+  ],
+  name:"Volcanic Dragon",
+  role:"Guardians of Dragon World",
+  power:"splash lavafire to attack",
+  birthbiome:"volcano"
+},
+{
+  images:[
+    "River_dragon.webp",
+    "River_dragon2.webp",
+    "River_baby.webp"
+  ],
+  name:"River or water Dragon",
+  power:"splash water as jet stream",
+  birthbiome:"river"
+},
+{
+  images:[
+    "deepsea_dragon.webp",
+    "deepsea_dragon2.webp"
+  ],
+  name:"Deepsea dragons",
+  role:"Guardians of Dragon world",
+  power:"splash enormous amount of water to attack",
+  birthbiome:"ocean"
+},
+{
+  images:[
+    "ice_dragon.webp",
+    "ice_baby.webp"
+  ],
+  name:"Ice Dragon",
+  power:"splash ice to attack",
+  birthbiome:"ice biome"
+},
+];
+
+/* ═══════════════════════ WORLDS (colour-coding of every universe) ═══════════════════════ */
 const WORLDS = {
+  /* NOVAZONE */
   all:      { label:'ALL WORLDS',   note:'Every file in the archive',            color:'#8fdcff' },
   kirax:    { label:'KIRAX 17',     note:'Highly advanced planet',               color:'#37f0ff' },
   vedtoria: { label:'VEDTORIA',     note:'Nature and magical planet',            color:'#3dffa0' },
   warship:  { label:'WARSHIP',      note:"Zetorex's army carrier",               color:'#ff4d5e' },
   monster:  { label:'MONSTER ZONE', note:'Ancient monster region',               color:'#ffb02e' },
-  beyond:   { label:'BEYOND',       note:'Earth, the Stellar Rift and deep space', color:'#a58bff' }
+  beyond:   { label:'BEYOND',       note:'Earth, the Stellar Rift and deep space', color:'#a58bff' },
+  /* DRAGON WORLD */
+  dall:     { label:'ALL DRAGON FILES', note:'Every file in the Dragon World archive', color:'#ffd36a' },
+  realm:    { label:'DRAGON WORLD', note:'Home of dragons',                      color:'#e07bff' },
+  wind:     { label:'WIND BIOME',   note:'Dragons of the wind',                  color:'#7ee8d0' },
+  volcanic: { label:'VOLCANO',      note:'Guardians of lava and fire',           color:'#ff6a2e' },
+  river:    { label:'RIVER',        note:'Water dragons of the rivers',          color:'#3aa8ff' },
+  deepsea:  { label:'DEEP SEA',     note:'Guardians of the ocean depths',        color:'#6b7bff' },
+  ice:      { label:'ICE BIOME',    note:'Dragons of the frozen lands',          color:'#bfeaff' }
 };
-function worldOf(it){
+function novaWorldOf(it){
   if(it.world && WORLDS[it.world]) return it.world;
   const z = (it.zone || '').toLowerCase(), n = it.name.toLowerCase();
   if(z.includes('monster') || n.includes('monster')) return 'monster';
@@ -634,6 +742,32 @@ function worldOf(it){
   if(z.includes('warship') || z === 'space') return 'warship';
   return 'beyond';
 }
+function dragonWorldOf(it){
+  if(it.world && WORLDS[it.world]) return it.world;
+  const b = (it.birthbiome || '').toLowerCase();
+  if(b.includes('wind')) return 'wind';
+  if(b.includes('volcan') || b.includes('lava')) return 'volcanic';
+  if(b.includes('river')) return 'river';
+  if(b.includes('ocean') || b.includes('sea')) return 'deepsea';
+  if(b.includes('ice')) return 'ice';
+  return 'realm';
+}
+
+/* ═══════════════════════ UNIVERSES ═══════════════════════ */
+const UNIVERSES = {
+  novazone:{
+    name:'NOVAZONE', title:'NOVAZONE ARCHIVE', tag:'The cosmic universe', color:'#8fdcff',
+    sub:'Characters, ships, armies and worlds from the cosmic universe of K.G.ZENON.',
+    doc:'NOVAZONE ARCHIVE | ZENON Fictional Universe',
+    data:novazone, all:'all', order:['kirax','vedtoria','warship','monster','beyond'], charLabel:'CHARACTERS', worldOf:novaWorldOf
+  },
+  dragonworld:{
+    name:'DRAGON WORLD', title:'DRAGON WORLD ARCHIVE', tag:'Home of dragons', color:'#ffd36a',
+    sub:'Dragons, biomes and ancient realms from the universe of K.G.ZENON.',
+    doc:'DRAGON WORLD ARCHIVE | ZENON Fictional Universe',
+    data:dragonzone, all:'dall', order:['realm','wind','volcanic','river','deepsea','ice'], charLabel:'DRAGONS', worldOf:dragonWorldOf
+  }
+};
 
 /* ═══════════════════════ HELPERS ═══════════════════════ */
 const $ = s => document.querySelector(s);
@@ -642,26 +776,37 @@ const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce;
 
-novazone.forEach(it => { it._w = worldOf(it); it._imgs = it.images || [it.img]; it._cur = 0; });
+Object.keys(UNIVERSES).forEach(k => {
+  const U = UNIVERSES[k];
+  U.data.forEach(it => {
+    if(!it.type) it.type = it.birthbiome ? 'characters' : 'other';   // dragons count as characters
+    if(!it.zone && it.birthbiome) it.zone = it.birthbiome;
+    it._w = U.worldOf(it); it._imgs = it.images || [it.img]; it._cur = 0;
+  });
+});
 
-const grid = $('#grid'), worldsEl = $('#worlds'), typesEl = $('#types');
-const state = { world:'all', type:'all', q:'' };
+const grid = $('#grid'), worldsEl = $('#worlds'), typesEl = $('#types'), unisEl = $('#unis');
+const state = { uni:'novazone', world:'all', type:'all', q:'' };
+let U = UNIVERSES.novazone;
 let view = [];
-let fxWorld = 'all', booted = false, fxSetWorld = () => {};
+let fxWorld = 'all', booted = false, fxSetWorld = () => {}, pendingChapter = null;
 const chapterEl = $('#chapter');
 function showChapter(W){
   if(reduce) return;
-  $('#chName').textContent = W.label; $('#chNote').textContent = W.note;
+  $('#chName').textContent = W.label; $('#chNote').textContent = W.note || W.tag || '';
   chapterEl.classList.remove('go'); void chapterEl.offsetWidth; chapterEl.classList.add('go');
 }
 chapterEl.addEventListener('animationend', e => { if(e.target === chapterEl) chapterEl.classList.remove('go'); });
 
-/* world chips (only worlds that actually have files) */
-const counts = { all: novazone.length };
-novazone.forEach(it => counts[it._w] = (counts[it._w] || 0) + 1);
-worldsEl.innerHTML = Object.keys(WORLDS).filter(k => counts[k]).map(k =>
-  `<button type="button" class="chip" data-w="${k}" style="--c:${WORLDS[k].color}" aria-pressed="false"><i class="orb"></i>${WORLDS[k].label}<em>${counts[k]}</em></button>`
-).join('');
+/* world chips for the current universe (only worlds that actually have files) */
+function buildChips(){
+  const counts = {};
+  U.data.forEach(it => counts[it._w] = (counts[it._w] || 0) + 1);
+  const keys = [U.all].concat(U.order.filter(k => counts[k]));
+  worldsEl.innerHTML = keys.map(k =>
+    `<button type="button" class="chip" data-w="${k}" style="--c:${WORLDS[k].color}" aria-pressed="false"><i class="orb"></i>${WORLDS[k].label}<em>${k === U.all ? U.data.length : counts[k]}</em></button>`
+  ).join('');
+}
 
 /* ═══════════════════════ RENDER ═══════════════════════ */
 function cardHTML(it, i){
@@ -681,7 +826,7 @@ function cardHTML(it, i){
         <h4>${esc(it.name)}</h4>
         ${it.role ? `<div class="row"><b>Role</b>${esc(cap(it.role))}</div>` : ''}
         ${chips ? `<div class="row"><b>Abilities</b><ul class="chips">${chips}</ul></div>` : ''}
-        ${it.zone ? `<div class="row"><b>Zone</b>${esc(cap(it.zone))}</div>` : ''}
+        ${it.zone ? `<div class="row"><b>${it.birthbiome ? 'Birth biome' : 'Zone'}</b>${esc(cap(it.zone))}</div>` : ''}
         <span class="hint">Tap to flip back</span>
       </div>
     </div></div>
@@ -696,8 +841,10 @@ function updateUI(){
   const W = WORLDS[state.world];
   document.body.dataset.world = state.world;
   document.body.style.setProperty('--a', W.color);
+  document.querySelectorAll('.g-d').forEach(g => g.classList.toggle('on', g.dataset.k === state.world));
   worldsEl.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.w === state.world));
   typesEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === state.type));
+  unisEl.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === state.uni));
   $('#bName').textContent = W.label;
   $('#bNote').textContent = W.note;
   $('#bCount').textContent = view.length + (view.length === 1 ? ' file' : ' files');
@@ -705,16 +852,32 @@ function updateUI(){
 
 function apply(){
   const q = state.q.trim().toLowerCase();
-  view = novazone.filter(it =>
-    (state.world === 'all' || it._w === state.world) &&
+  view = U.data.filter(it =>
+    (state.world === U.all || it._w === state.world) &&
     (state.type === 'all' || it.type === state.type) &&
-    (!q || (it.name + ' ' + (it.role || '') + ' ' + (it.power || '') + ' ' + (it.zone || '')).toLowerCase().includes(q)));
+    (!q || (it.name + ' ' + (it.role || '') + ' ' + (it.power || '') + ' ' + (it.zone || '') + ' ' + (it.birthbiome || '')).toLowerCase().includes(q)));
   render(); updateUI();
   if(state.world !== fxWorld){                                   // entering another world: change the scene + play the chapter card
     fxWorld = state.world; fxSetWorld(fxWorld);
-    if(booted) showChapter(WORLDS[fxWorld]);
+    if(booted) showChapter(pendingChapter || WORLDS[fxWorld]);
   }
+  pendingChapter = null;
   booted = true;
+}
+
+/* switch between universes (NOVAZONE ⇄ DRAGON WORLD) */
+function setUniverse(k){
+  if(!UNIVERSES[k]) k = 'novazone';
+  const changed = k !== state.uni;
+  state.uni = k; U = UNIVERSES[k];
+  state.world = U.all; state.type = 'all'; state.q = ''; $('#q').value = '';
+  buildChips();
+  $('#title').textContent = U.title;
+  $('#sub').textContent = U.sub;
+  document.title = U.doc;
+  typesEl.querySelector('[data-t="characters"]').textContent = U.charLabel;
+  if(changed && booted) pendingChapter = { label:U.name, note:U.tag };
+  apply();
 }
 
 worldsEl.addEventListener('click', e => {
@@ -722,6 +885,13 @@ worldsEl.addEventListener('click', e => {
   state.world = c.dataset.w; apply();
   c.scrollIntoView({ inline:'center', block:'nearest', behavior: reduce ? 'auto' : 'smooth' });
 });
+unisEl.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if(!b || b.dataset.u === state.uni) return;
+  try{ history.replaceState(null, '', '#' + b.dataset.u); }catch(_){}
+  setUniverse(b.dataset.u);
+  window.scrollTo({ top:0, behavior: reduce ? 'auto' : 'smooth' });
+});
+addEventListener('hashchange', () => { const k = location.hash.slice(1); if(UNIVERSES[k] && k !== state.uni) setUniverse(k); });
 typesEl.addEventListener('click', e => { const b = e.target.closest('button'); if(!b) return; state.type = b.dataset.t; apply(); });
 let qT = 0;
 $('#q').addEventListener('input', e => { clearTimeout(qT); qT = setTimeout(() => { state.q = e.target.value; apply(); }, 120); });
@@ -844,7 +1014,8 @@ if('IntersectionObserver' in window){
 /* ═══════════════════════ DEEP-SPACE ENGINE ═══════════════════════
    One light canvas: stars + tiny galaxies + dust, and an ambience that changes with the world you enter
    (data-rain over Kirax, fireflies over Vedtoria, sparks + scanner beam on the Warship, embers in the Monster Zone,
-   comets in deep space). Painted sprites are reused, so it stays cheap. */
+   comets in deep space; Dragon World: embers in the realm and volcano, wind streaks, glowing motes in water and ice).
+   Painted sprites are reused, so it stays cheap. */
 (function(){
   const cv = $('#space'), ctx = cv.getContext('2d'), bands = [$('#band'), $('#band2')];
   const small = matchMedia('(max-width:768px)').matches, conn = navigator.connection || {};
@@ -855,6 +1026,22 @@ if('IntersectionObserver' in window){
   const rnd = (a, b) => a + Math.random() * (b - a);
   const mk = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
   const stars = Array.from({ length:N }, () => ({ x:Math.random(), y:Math.random(), z:0.15 + Math.random() * 0.85, tw:Math.random() * 6.28, warm:Math.random() < 0.14 }));
+
+  /* which ambience each world gets */
+  const AMB = {
+    kirax:{ k:'rain' },
+    vedtoria:{ k:'fly', s:'green' },
+    warship:{ k:'spark', a:'rgb(255,80,100)', b:'rgb(255,170,90)' },
+    monster:{ k:'ember', s:'orange' },
+    dall:{ k:'ember', s:'gold' },
+    realm:{ k:'fly', s:'violet' },
+    wind:{ k:'spark', a:'rgb(190,250,235)', b:'rgb(150,215,255)' },
+    volcanic:{ k:'ember', s:'orange' },
+    river:{ k:'fly', s:'blue' },
+    deepsea:{ k:'fly', s:'indigo' },
+    ice:{ k:'fly', s:'ice' }
+  };
+  const COMET_WORLDS = { all:1, beyond:1, dall:1 };
 
   /* ---- noise (for the Milky-Way band) ---- */
   const h3 = (x, y, z) => { let h = Math.imul(x, 374761393) ^ Math.imul(y, 668265263) ^ Math.imul(z, 1274126177); h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967295; };
@@ -895,7 +1082,10 @@ if('IntersectionObserver' in window){
     r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(0.12, 'rgba(' + rgb + ',.95)'); r.addColorStop(0.4, 'rgba(' + rgb + ',.25)'); r.addColorStop(1, 'rgba(' + rgb + ',0)');
     g.fillStyle = r; g.fillRect(0, 0, 48, 48); return s;
   };
-  const GL = { green:glow('90,255,170'), orange:glow('255,150,60') };
+  const GL = {
+    green:glow('90,255,170'), orange:glow('255,150,60'), gold:glow('255,205,90'), violet:glow('220,130,255'),
+    blue:glow('70,170,255'), indigo:glow('110,125,255'), ice:glow('210,240,255')
+  };
   const smudgeSprite = () => {                                   // tiny far-away galaxy
     const s = mk(64, 64), g = s.getContext('2d'), warm = Math.random() < 0.5;
     g.translate(32, 32); g.rotate(rnd(0, 3.14)); g.scale(1, rnd(0.28, 0.6));
@@ -918,40 +1108,41 @@ if('IntersectionObserver' in window){
 
   /* ---- world ambience ---- */
   function spawn(w){
-    if(w === 'all' || w === 'beyond') return [];
+    const A = AMB[w]; if(!A) return [];
     const n = lite ? 8 : (small ? 14 : 26), a = [];
     for(let i = 0; i < n; i++){
       const p = { x:Math.random() * W, y:Math.random() * H, ph:Math.random() * 6.28 };
-      if(w === 'kirax'){ p.vy = rnd(30, 100) * dpr; p.len = rnd(18, 70) * dpr; p.a = rnd(0.14, 0.4); }
-      else if(w === 'vedtoria'){ p.vx = rnd(-5, 5) * dpr; p.vy = -rnd(4, 14) * dpr; p.r = rnd(6, 13) * dpr; }
-      else if(w === 'warship'){ p.vx = -rnd(50, 180) * dpr; p.len = rnd(8, 24) * dpr; p.a = rnd(0.25, 0.75); p.hot = Math.random() < 0.5; }
-      else if(w === 'monster'){ p.vy = -rnd(18, 60) * dpr; p.vx = rnd(-4, 4) * dpr; p.r = rnd(6, 13) * dpr; }
+      if(A.k === 'rain'){ p.vy = rnd(30, 100) * dpr; p.len = rnd(18, 70) * dpr; p.a = rnd(0.14, 0.4); }
+      else if(A.k === 'fly'){ p.vx = rnd(-5, 5) * dpr; p.vy = -rnd(4, 14) * dpr; p.r = rnd(6, 13) * dpr; }
+      else if(A.k === 'spark'){ p.vx = -rnd(50, 180) * dpr; p.len = rnd(8, 24) * dpr; p.a = rnd(0.25, 0.75); p.hot = Math.random() < 0.5; }
+      else if(A.k === 'ember'){ p.vy = -rnd(18, 60) * dpr; p.vx = rnd(-4, 4) * dpr; p.r = rnd(6, 13) * dpr; }
       a.push(p);
     }
     return a;
   }
   function drawAmb(t, dt){
     amb += (1 - amb) * (1 - Math.exp(-dt * 1.4));
-    for(let i = 0; i < parts.length; i++){
+    const A = AMB[world];
+    for(let i = 0; A && i < parts.length; i++){
       const p = parts[i];
-      if(world === 'kirax'){                                     // data rain
+      if(A.k === 'rain'){                                        // data rain
         p.y += p.vy * dt; if(p.y - p.len > H){ p.y = -p.len; p.x = Math.random() * W; }
         ctx.globalAlpha = p.a * amb; ctx.strokeStyle = ctx.fillStyle = 'rgb(70,240,255)'; ctx.lineWidth = dpr;
         ctx.beginPath(); ctx.moveTo(p.x, p.y - p.len); ctx.lineTo(p.x, p.y); ctx.stroke(); ctx.fillRect(p.x - dpr, p.y - dpr, 2 * dpr, 2 * dpr);
-      } else if(world === 'vedtoria'){                           // fireflies
+      } else if(A.k === 'fly'){                                  // fireflies / drifting motes
         p.x += p.vx * dt + Math.sin(t * 0.0006 + p.ph) * 0.3 * dpr; p.y += p.vy * dt;
         if(p.y < -20){ p.y = H + 20; p.x = Math.random() * W; }
         ctx.globalAlpha = (0.3 + 0.7 * Math.abs(Math.sin(t * 0.0011 + p.ph))) * amb;
-        ctx.drawImage(GL.green, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
-      } else if(world === 'warship'){                            // sparks streaming past
+        ctx.drawImage(GL[A.s], p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+      } else if(A.k === 'spark'){                                // sparks / wind streaking past
         p.x += p.vx * dt; if(p.x < -p.len){ p.x = W + p.len; p.y = Math.random() * H; }
-        ctx.globalAlpha = p.a * amb; ctx.strokeStyle = p.hot ? 'rgb(255,170,90)' : 'rgb(255,80,100)'; ctx.lineWidth = dpr * 1.2;
+        ctx.globalAlpha = p.a * amb; ctx.strokeStyle = p.hot ? A.b : A.a; ctx.lineWidth = dpr * 1.2;
         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x + p.len, p.y); ctx.stroke();
-      } else if(world === 'monster'){                            // rising embers
+      } else if(A.k === 'ember'){                                // rising embers
         p.y += p.vy * dt; p.x += p.vx * dt + Math.sin(t * 0.0012 + p.ph) * 0.35 * dpr;
         if(p.y < -20){ p.y = H + 20; p.x = Math.random() * W; }
         ctx.globalAlpha = (0.35 + 0.65 * Math.abs(Math.sin(t * 0.004 + p.ph * 3))) * amb;
-        ctx.drawImage(GL.orange, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+        ctx.drawImage(GL[A.s], p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
       }
     }
     if(world === 'warship'){                                     // slow red scanner beam every ~12s
@@ -965,7 +1156,7 @@ if('IntersectionObserver' in window){
     ctx.globalAlpha = 1;
   }
   function drawComet(t, dt){                                     // comets in open space
-    if(world !== 'all' && world !== 'beyond') return;
+    if(!COMET_WORLDS[world]) return;
     if(!comet){
       if(t > nextComet && amb > 0.5){
         const dir = Math.random() < 0.5 ? 1 : -1, ang = rnd(0.35, 0.65), sp = (small ? 520 : 760) * dpr;
@@ -1046,7 +1237,8 @@ if('IntersectionObserver' in window){
   }
 })();
 
-apply();
+/* start: open the universe named in the link (…/novazone.html#dragonworld), otherwise NOVAZONE */
+setUniverse(UNIVERSES[location.hash.slice(1)] ? location.hash.slice(1) : 'novazone');
 </script>
 </body>
 </html>
